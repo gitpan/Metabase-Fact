@@ -2,11 +2,10 @@ package Metabase::User::Profile;
 use 5.006;
 use strict;
 use warnings;
-our $VERSION = '0.001';
+our $VERSION = '0.003';
 $VERSION = eval $VERSION; ## no critic
 
 use Carp;
-use JSON;
 use Data::GUID guid_string => { -as => '_guid' };
 
 use base 'Metabase::Report';
@@ -23,64 +22,42 @@ sub create {
     { 
       full_name       => 1,
       email_address   => 1,
-      secret          => 1,
     }
   );
 
+  # resource string must reference our own guid, so pregenerate it
+  my $guid = lc _guid();
   my $profile = $class->open(
-    # placeholder guid in resource
-    resource => "metabase:user:00000000-0000-0000-0000-000000000000",
+    guid      => $guid,
+    resource  => "metabase:user:$guid",
   );
 
-  # fix-up our resource string to refer to our assigned guid
-  $profile->{metadata}{core}{resource} = [
-    '//str' => "metabase:user:" . $profile->guid
-  ];
+  # we are our own creator
+  $profile->set_creator($profile->resource);
 
   # add facts
   $profile->add( 'Metabase::User::FullName' => $args->{full_name} );
   $profile->add( 'Metabase::User::EmailAddress' => $args->{email_address} );
-  $profile->add( 'Metabase::User::Secret' => $args->{secret} );
   $profile->close;
   return $profile;
-}
-
-sub save {
-  my ($self, $filename ) = @_;
-  open my $fh, ">", $filename or Carp::confess "Error saving profile: $!";
-  print {$fh} JSON->new->encode( $self->as_struct );
-  close $fh;
-  return 1;
-}
-
-sub load { 
-  my ($class, $filename) = @_;
-  open my $fh, "<", $filename or Carp::confess "Error loading profile: $!";
-  my $string = do { local $/; <$fh> };
-  close $fh;
-  return $class->from_struct( JSON->new->decode( $string ) );
 }
 
 #--------------------------------------------------------------------------#
 # internals
 #--------------------------------------------------------------------------#
 
-# XXX: Maybe we also want validate_other crap or just validate.
-# -- rjbs, 2009-03-30
-sub validate_content {
-  my ($self) = @_;
-
-  my ($guid) = $self->resource =~ m{^metabase:user:(.+)$};
+sub validate_resource {
+  my ($self) = shift;
+  my $resource = $self->SUPER::validate_resource(@_);
+  my ($guid) = $resource->guid;
   Carp::confess "resource guid differs from fact guid" if $guid ne $self->guid;
-
-  $self->SUPER::validate_content;
+  return $resource;
 }
 
 sub report_spec { 
   return {
-    'Metabase::User::EmailAddress'  => '1+',
     'Metabase::User::FullName'      => '1',
-    'Metabase::User::Secret'        => '1',
+    'Metabase::User::EmailAddress'  => '1+',
   }
 }
   
@@ -99,7 +76,6 @@ Metabase::User::Profile - Metabase report class for user-related facts
   my $profile = Metabase::User::Profile->create(
     full_name     => 'John Doe',
     email_address => 'jdoe@example.com',
-    secret        => 'aixuZuo8',
   );
 
 =head1 DESCRIPTION
@@ -113,18 +89,17 @@ Metabase report class encapsulating Facts about a metabase user
   my $profile = Metabase::User::Profile->create(
     full_name     => 'John Doe',
     email_address => 'jdoe@example.com',
-    secret        => 'aixuZuo8',
   );
 
 =head2 The long way
 
   my $profile = Metabase::User::Profile->open(
-    resource => 'metabase:user:B66C7662-1D34-11DE-A668-0DF08D1878C0'
+    resource => 'metabase:user:b66c7662-1d34-11de-a668-0df08d1878c0'
+    creator  => 'metabase:user:b66c7662-1d34-11de-a668-0df08d1878c0'
   );
 
   $profile->add( 'Metabase::User::EmailAddress' => 'jdoe@example.com' );
   $profile->add( 'Metabase::User::FullName'     => 'John Doe' );
-  $profile->add( 'Metabase::User::Secret'       => 'aixuZuo8' );
     
   $profile->close;
 
@@ -140,7 +115,6 @@ Valid parameters include:
 
   full_name      - the user's full name
   email_address  - the user's email address
-  secret         - the shared secret to use for authentication
 
 =head2 load
 
@@ -174,7 +148,7 @@ existing test-file that illustrates the bug or desired feature.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2009 by David A. Golden
+Copyright (c) 2009-2010 by David A. Golden
 
 Licensed under the same terms as Perl itself (the "License").
 You may not use this file except in compliance with the License.

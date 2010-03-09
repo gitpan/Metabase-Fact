@@ -1,10 +1,8 @@
 bin/metabase-profile
 Changes
 inc/Module/Install.pm
-inc/Module/Install/AutoManifest.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
-inc/Module/Install/ExtraTests.pm
 inc/Module/Install/Fetch.pm
 inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm
@@ -15,6 +13,12 @@ lib/Metabase/Fact.pm
 lib/Metabase/Fact/Hash.pm
 lib/Metabase/Fact/String.pm
 lib/Metabase/Report.pm
+lib/Metabase/Resource.pm
+lib/Metabase/Resource/cpan.pm
+lib/Metabase/Resource/cpan/distfile.pm
+lib/Metabase/Resource/metabase.pm
+lib/Metabase/Resource/metabase/fact.pm
+lib/Metabase/Resource/metabase/user.pm
 lib/Metabase/User/EmailAddress.pm
 lib/Metabase/User/FullName.pm
 lib/Metabase/User/Profile.pm
@@ -34,6 +38,8 @@ t/lib/Test/Metabase/StringFact.pm
 t/report/report-as-string.t
 t/report/report-check-spec.t
 t/report/report-open-close.t
+t/resource/base.t
+t/resource/cpan.t
 t/user/profile.t
 xt/release/pod-coverage.t
 xt/release/pod-format.t

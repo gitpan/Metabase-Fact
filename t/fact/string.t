@@ -13,7 +13,7 @@ use JSON;
 
 use lib 't/lib';
 
-plan tests => 11;
+plan tests => 12;
 
 require_ok( 'FactSubclasses.pm' );
 
@@ -30,7 +30,7 @@ my $meta = {
 };
 
 my $args = {
-    resource => "JOHNDOE/Foo-Bar-1.23.tar.gz",
+    resource => "cpan:///distfile/JOHNDOE/Foo-Bar-1.23.tar.gz",
     content  => $string,
 };
 
@@ -39,7 +39,8 @@ lives_ok{ $obj = FactThree->new( $args ) }
 
 isa_ok( $obj, 'Metabase::Fact::String' ); 
 
-lives_ok{ $obj = FactThree->new( %$args ) } 
+my $test_guid = "b4ac3de6-15bb-11df-b44d-0018f34ec37c";
+lives_ok{ $obj = FactThree->new( %$args, guid => $test_guid ) } 
     "new( <list> ) doesn't die";
 
 isa_ok( $obj, 'Metabase::Fact::String' );
@@ -53,19 +54,26 @@ my $want_struct = {
   content  => $string,
   metadata => {
     core    => {
-      type           => [ '//str' => 'FactThree'       ],
-      schema_version => [ '//num' => 1                 ],
-      guid           => [ '//str' => $obj->guid        ],
-      resource       => [ '//str' => $args->{resource} ],
+      type           => 'FactThree'       ,
+      schema_version => 1                 ,
+      guid           => $test_guid        ,
+      resource       => $args->{resource} ,
+      valid          => 1                 ,
     },
   },
 };
 
 my $have_struct = $obj->as_struct;
-ok(
-  (delete $have_struct->{metadata}{core}{created_at}) - time < 60,
-  'we created the fact recently',
+is( $have_struct->{metadata}{core}{update_time},
+    $have_struct->{metadata}{core}{creation_time},
+    "creation_time equals update_time"
 );
+
+my $creation_time = delete $have_struct->{metadata}{core}{creation_time};
+like( $creation_time, qr/\A\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\dZ\z/,
+  'creation_time is ISO 8601 Zulu',
+);
+delete $have_struct->{metadata}{core}{update_time}; 
 
 is_deeply($have_struct, $want_struct, "object as_struct() correct"); 
 

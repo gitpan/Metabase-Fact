@@ -13,7 +13,7 @@ use JSON;
 
 use lib 't/lib';
 
-plan tests => 16;
+plan tests => 19;
 
 require_ok( 'FactSubclasses.pm' );
 
@@ -33,7 +33,7 @@ my $meta = {
 };
 
 my $args = {
-  resource => "cpan:///JOHNDOE/Foo-Bar-1.23.tar.gz",
+  resource => "cpan:///distfile/JOHNDOE/Foo-Bar-1.23.tar.gz",
   content  => $struct,
 };
 
@@ -62,7 +62,7 @@ lives_ok{ $obj = FactFour->new( %$args ) }
 
 isa_ok( $obj, 'Metabase::Fact::Hash' );
 is( $obj->type, "FactFour", "object type is correct" );
-is( $obj->{metadata}{core}{type}[1], "FactFour", "object type is set internally" );
+is( $obj->{metadata}{core}{type}, "FactFour", "object type is set internally" );
 
 is( $obj->resource, $args->{resource}, "object refers to distribution" );
 is_deeply( $obj->content_metadata, $meta, "object content_metadata() correct" );
@@ -72,27 +72,51 @@ my $want_struct = {
   content  => to_json($struct),
   metadata => {
     core    => {
-      type           => [ '//str' => 'FactFour'        ],
-      schema_version => [ '//num' => 1                 ],
-      guid           => [ '//str' => $obj->guid        ],
-      resource       => [ '//str' => $args->{resource} ],
+      type           => 'FactFour'       ,
+      schema_version => 1                ,
+      guid           => $obj->guid       ,
+      resource       => $args->{resource},
+      valid          => 1                ,
     },
   }
 };
 
 my $have_struct = $obj->as_struct;
-ok(
-  (delete $have_struct->{metadata}{core}{created_at}) - time < 60,
-  'we created the fact recently',
+is( $have_struct->{metadata}{core}{update_time},
+    $have_struct->{metadata}{core}{creation_time},
+    "creation_time equals update_time"
 );
+
+my $creation_time = delete $have_struct->{metadata}{core}{creation_time};
+like( $creation_time, qr/\A\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\dZ\z/,
+  'creation_time is ISO 8601 Zulu',
+);
+delete $have_struct->{metadata}{core}{update_time}; 
 
 is_deeply($have_struct, $want_struct, "object as_struct correct"); 
 
-my $guid = '351E99EA-1D21-11DE-AB9C-3268421C7A0A';
-$obj->set_creator_id($guid);
-$want_struct->{metadata}{core}{creator_id} = [ '//str' => $guid ];
+my $creator_uri = 'metabase:user:351e99ea-1d21-11de-ab9c-3268421c7a0a';
+$obj->set_creator($creator_uri);
+$want_struct->{metadata}{core}{creator} = Metabase::Resource->new($creator_uri);
 
+$have_struct = $obj->as_struct;
+delete $have_struct->{metadata}{core}{update_time}; 
+delete $have_struct->{metadata}{core}{creation_time}; 
 is_deeply($have_struct, $want_struct, "object as_struct correct w/creator"); 
+
+$obj->set_valid(0);
+$want_struct->{metadata}{core}{valid} = 0;
+$have_struct = $obj->as_struct;
+delete $have_struct->{metadata}{core}{update_time}; 
+delete $have_struct->{metadata}{core}{creation_time}; 
+is_deeply($have_struct, $want_struct, "set_valid(0)"); 
+
+$obj->set_valid(2);
+$want_struct->{metadata}{core}{valid} = 1;
+$have_struct = $obj->as_struct;
+delete $have_struct->{metadata}{core}{update_time}; 
+delete $have_struct->{metadata}{core}{creation_time}; 
+is_deeply($have_struct, $want_struct, "set_valid(2) normalized to '1'"); 
 
 #--------------------------------------------------------------------------#
 

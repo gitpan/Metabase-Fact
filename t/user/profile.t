@@ -5,6 +5,8 @@ use Test::More;
 use Test::Exception;
 use File::Spec;
 use File::Temp;
+use JSON;
+use Cwd;
 
 #--------------------------------------------------------------------------#
 # fixtures
@@ -12,11 +14,11 @@ use File::Temp;
 
 sub _compare {
   my ($report1, $report2) = @_;
-  is( $report1->core_metadata->{resource}[1], 
-      $report2->core_metadata->{resource}[1],
+  is( $report1->core_metadata->{resource}, 
+      $report2->core_metadata->{resource},
       "Checking URI");
   is ( $report1->guid,  $report2->guid, "Checking GUID" );
-  for my $i ( 0 .. 2 ) {
+  for my $i ( 0 .. 1 ) {
     is_deeply( $report1->{content}[$i]->as_struct, 
         $report2->{content}[$i]->as_struct,
         "Checking fact $i",
@@ -29,9 +31,8 @@ sub _compare {
 # start testing
 #--------------------------------------------------------------------------#
 
-plan 'no_plan';
-
 require_ok( 'Metabase::User::Profile' );
+require_ok( 'Metabase::User::Secret' );
 
 #--------------------------------------------------------------------------#
 # new profile creation
@@ -43,7 +44,6 @@ lives_ok {
   $profile = Metabase::User::Profile->create(
     full_name => "John Doe",
     email_address => 'jdoe@example.com',
-    secret => '1234567890',
   );
 } "create new profile";
 
@@ -67,10 +67,23 @@ isa_ok($profile_copy, 'Metabase::User::Profile');
 
 _compare( $profile, $profile_copy );
 
+
 # try profile-generator
-my $profile_file2 = File::Spec->catfile( $tempdir, 'myprofile.json' );
-my $bin = File::Spec->catfile( qw/bin metabase-profile/ );
-qx/$^X $bin -o $profile_file2 --name "JohnPublic" --email jp\@example.com --secret 3.14159/;
-ok( -r $profile_file2, 'created  profile with metabase-profile' );
-my $profile_copy2 = Metabase::User::Profile->load( $profile_file2 );
-ok( $profile_copy2, "Loaded profile file" );
+my $bin = File::Spec->rel2abs(File::Spec->catfile( qw/bin metabase-profile/ ));
+my $cwd = Cwd::cwd();
+chdir $tempdir; END { chdir $cwd }
+my $output_file = 'my.profile.json';
+qx/$^X $bin -o $output_file --name "JohnPublic" --email jp\@example.com --secret 3.14159/;
+ok( -r $output_file, 'created named profile file with metabase-profile' );
+
+qx/$^X $bin --name "JohnPublic" --email jp\@example.com --secret 3.14159/;
+ok( -r 'metabase_id.json', 'created default profile file with metabase-profile' );
+
+my $file_guts = do { local (@ARGV,$/) = 'metabase_id.json'; <> };
+my $facts = from_json($file_guts);
+my $profile_copy2 = Metabase::User::Profile->from_struct( $facts->[0] );
+ok( $profile_copy2, "Loaded profile from file" );
+my $secret_copy2 = Metabase::User::Secret->from_struct( $facts->[1] );
+ok( $secret_copy2, "Loaded secret from file" );
+
+done_testing;

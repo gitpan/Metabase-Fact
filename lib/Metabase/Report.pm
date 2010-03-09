@@ -6,7 +6,7 @@ use Carp ();
 use JSON ();
 use base 'Metabase::Fact';
 
-our $VERSION = '0.001';
+our $VERSION = '0.003';
 $VERSION = eval $VERSION;
 
 #--------------------------------------------------------------------------#
@@ -18,13 +18,14 @@ sub report_spec {
   Carp::confess "report_spec method not implemented by " . ref $self;
 }
 
-sub set_creator_id {
-  my ($self, $guid) = @_;
+sub set_creator {
+  my ($self, $uri) = @_;
 
-  $self->SUPER::set_creator_id($guid);
+  $self->SUPER::set_creator($uri);
 
   for my $fact ($self->facts) {
-    $fact->set_creator_id($guid);
+    $fact->set_creator($uri)
+      unless $fact->creator;
   }
 }
 
@@ -47,7 +48,9 @@ sub open {
     { 
       resource       => 1,
       # still optional so we can manipulate anon facts -- dagolden, 2009-05-12
-      creator_id     => 0,
+      creator     => 0,
+      # helpful for constructing facts with non-random guids
+      guid => 0,
     }
   );
 
@@ -70,12 +73,12 @@ sub add {
   } else {
     ($fact_class, $content) = @args;
     $fact = $fact_class->new( 
-      resource => $self->resource, 
+      resource => $self->resource->resource, 
       content  => $content,
     );
   }
 
-  $fact->set_creator_id($self->creator_id) if $self->creator_id;
+  $fact->set_creator($self->creator->resource) if $self->creator;
 
   push @{$self->{content}}, $fact;
   return $self;
@@ -121,7 +124,9 @@ sub content_as_bytes {
   Carp::confess("can't serialize an open report") unless $self->{__closed};
 
   my $content = [ map { $_->as_struct } @{ $self->content } ];
-  JSON->new->encode( $content );
+  my $encoded = eval { JSON->new->encode( $content ) };
+  Carp::confess $@ if $@;
+  return $encoded;
 }
 
 sub content_from_bytes { 
@@ -132,7 +137,7 @@ sub content_from_bytes {
 
   my @facts;
   for my $struct (@$fact_structs) {
-    my $class = $self->class_from_type( $struct->{metadata}{core}{type}[1] );
+    my $class = $self->class_from_type( $struct->{metadata}{core}{type} );
     my $fact = eval { $class->from_struct($struct) }
       or Carp::confess "Unable to create a '$class' object: $@";
     push @facts, $fact;
