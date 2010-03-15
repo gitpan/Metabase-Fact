@@ -5,7 +5,7 @@ use warnings;
 use Carp ();
 use CPAN::DistnameInfo ();
 
-our $VERSION = '0.005';
+our $VERSION = '0.006';
 $VERSION = eval $VERSION;
 
 use Metabase::Resource;
@@ -60,7 +60,7 @@ sub _validate_distfile {
   my $d = eval { CPAN::DistnameInfo->new($path) };
   my $bad = defined $d ? 0 : 1;
 
-  my $cache->{dist_file} = $string;
+  my $cache = { dist_file => $string };
 
   for my $k ( $bad ? () : (keys %distfile_map) ) {
     my $value = $d->$k;
