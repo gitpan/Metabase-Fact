@@ -1,13 +1,23 @@
-package Metabase::Report;
+# 
+# This file is part of Metabase-Fact
+# 
+# This software is Copyright (c) 2010 by David Golden.
+# 
+# This is free software, licensed under:
+# 
+#   The Apache License, Version 2.0, January 2004
+# 
 use 5.006;
 use strict;
 use warnings;
+package Metabase::Report;
+our $VERSION = '0.008';
+# ABSTRACT: a base class for collections of Metabase facts
+
 use Carp ();
 use JSON ();
-use base 'Metabase::Fact';
 
-our $VERSION = '0.007';
-$VERSION = eval $VERSION;
+use base 'Metabase::Fact';
 
 #--------------------------------------------------------------------------#
 # abstract methods -- fatal
@@ -210,11 +220,17 @@ sub load_fact_classes {
 
 1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
 Metabase::Report - a base class for collections of Metabase facts
+
+=head1 VERSION
+
+version 0.008
 
 =head1 SYNOPSIS
 
@@ -335,31 +351,22 @@ L<http://rt.cpan.org/Dist/Display.html?Queue=Metabase-Fact>
 When submitting a bug or request, please include a test-file or a patch to an
 existing test-file that illustrates the bug or desired feature.
 
-=head1 AUTHOR
+=head1 AUTHORS
 
-=over 
-
-=item * David A. Golden (DAGOLDEN)
-
-=item * Ricardo J. B. Signes (RJBS)
-
-=back
+  David Golden <dagolden@cpan.org>
+  Ricardo Signes <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-  Portions copyright (c) 2008 by David A. Golden
-  Portions copyright (c) 2008 by Ricardo J. B. Signes
+This software is Copyright (c) 2010 by David Golden.
 
-Licensed under the same terms as Perl itself (the "License").
-You may not use this file except in compliance with the License.
-A copy of the License was distributed with this file or you may obtain a 
-copy of the License from http://dev.perl.org/licenses/
+This is free software, licensed under:
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+  The Apache License, Version 2.0, January 2004
 
 =cut
+
+
+__END__
+
 

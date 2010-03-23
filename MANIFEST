@@ -1,16 +1,12 @@
-bin/metabase-profile
 Changes
-inc/Module/Install.pm
-inc/Module/Install/AutoManifest.pm
-inc/Module/Install/Base.pm
-inc/Module/Install/Can.pm
-inc/Module/Install/ExtraTests.pm
-inc/Module/Install/Fetch.pm
-inc/Module/Install/Makefile.pm
-inc/Module/Install/Metadata.pm
-inc/Module/Install/Scripts.pm
-inc/Module/Install/Win32.pm
-inc/Module/Install/WriteAll.pm
+LICENSE
+MANIFEST
+META.yml
+Makefile.PL
+README
+README.hacking
+bin/metabase-profile
+dist.ini
 lib/Metabase/Fact.pm
 lib/Metabase/Fact/Hash.pm
 lib/Metabase/Fact/String.pm
@@ -25,11 +21,6 @@ lib/Metabase/User/EmailAddress.pm
 lib/Metabase/User/FullName.pm
 lib/Metabase/User/Profile.pm
 lib/Metabase/User/Secret.pm
-LICENSE
-Makefile.PL
-MANIFEST			This list of files
-MANIFEST.SKIP
-README.hacking
 t/00-compile.t
 t/base.t
 t/fact/hash.t
@@ -43,5 +34,6 @@ t/report/report-open-close.t
 t/resource/base.t
 t/resource/cpan.t
 t/user/profile.t
+xt/release/meta-yaml.t
 xt/release/pod-coverage.t
-xt/release/pod-format.t
+xt/release/pod-syntax.t
