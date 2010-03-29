@@ -11,7 +11,7 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Report;
-our $VERSION = '0.010';
+our $VERSION = '0.011';
 # ABSTRACT: a base class for collections of Metabase facts
 
 use Carp ();
@@ -230,7 +230,7 @@ Metabase::Report - a base class for collections of Metabase facts
 
 =head1 VERSION
 
-version 0.010
+version 0.011
 
 =head1 SYNOPSIS
 

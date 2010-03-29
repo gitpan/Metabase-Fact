@@ -23,7 +23,7 @@ my %WriteMakefileArgs = (
                        'EXE_FILES' => [
                                         'bin/metabase-profile'
                                       ],
-                       'VERSION' => '0.010',
+                       'VERSION' => '0.011',
                        'PREREQ_PM' => {
                                         'Test::Exception' => '0',
                                         'File::Spec' => '3',

@@ -11,7 +11,7 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Fact::String;
-our $VERSION = '0.010';
+our $VERSION = '0.011';
 # ABSTRACT: fact subtype for simple strings
 
 use Carp ();
@@ -52,7 +52,7 @@ Metabase::Fact::String - fact subtype for simple strings
 
 =head1 VERSION
 
-version 0.010
+version 0.011
 
 =head1 SYNOPSIS
 
