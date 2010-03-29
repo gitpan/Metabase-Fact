@@ -11,12 +11,12 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Fact;
-our $VERSION = '0.008';
+our $VERSION = '0.009';
 # ABSTRACT: base class for Metabase Facts
 
 use Carp ();
 use Data::GUID guid_string => { -as => '_guid' };
-use JSON ();
+use JSON 2 ();
 use Metabase::Resource;
 
 #--------------------------------------------------------------------------#
@@ -294,7 +294,7 @@ sub save {
   my $class = ref($self);
   open my $fh, ">", $filename
     or Carp::confess "Error saving $class to '$filename'\: $!";
-  print {$fh} JSON->new->encode( $self->as_struct );
+  print {$fh} JSON->new->ascii->encode( $self->as_struct );
   close $fh;
   return 1;
 }
@@ -339,7 +339,7 @@ sub load {
     or Carp::confess "Error loading fact from '$filename'\: $!";
   my $string = do { local $/; <$fh> };
   close $fh;
-  my $json = JSON->new->decode( $string );
+  my $json = JSON->new->ascii->decode( $string );
   my $class = $self->class_from_type($json->{metadata}{core}{type});
   eval "require $class; 1"
     or Carp::confess "Could not find $class to restore '$filename': $@";
@@ -388,7 +388,7 @@ Metabase::Fact - base class for Metabase Facts
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 SYNOPSIS
 

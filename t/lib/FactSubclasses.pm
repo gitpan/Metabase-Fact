@@ -8,7 +8,7 @@
 #   The Apache License, Version 2.0, January 2004
 # 
 package FactSubClasses;
-our $VERSION = '0.008';
+our $VERSION = '0.009';
 use strict;
 use warnings;
 
@@ -16,19 +16,19 @@ use Metabase::Fact::String;
 use Metabase::Fact::Hash;
 
 package FactOne;
-our $VERSION = '0.008';
+our $VERSION = '0.009';
 our @ISA = ('Metabase::Fact::String');
 sub content_as_bytes    { return reverse($_[0]->{content})  };
 sub content_from_bytes  { return reverse($_[1])             };
 
 package FactTwo;
-our $VERSION = '0.008';
+our $VERSION = '0.009';
 our @ISA = ('Metabase::Fact::String');
 sub content_as_bytes    { return reverse($_[0]->{content})  };
 sub content_from_bytes  { return reverse($_[1])             };
 
 package FactThree;
-our $VERSION = '0.008';
+our $VERSION = '0.009';
 use base 'Metabase::Fact::String';
 sub validate_content    { 
   $_[0]->SUPER::validate_content;
@@ -39,7 +39,7 @@ sub content_metadata    {
 }
 
 package FactFour;
-our $VERSION = '0.008';
+our $VERSION = '0.009';
 use base 'Metabase::Fact::Hash';
 sub required_keys {qw/ first /};
 sub optional_keys {qw/ second /};

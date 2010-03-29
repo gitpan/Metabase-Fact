@@ -11,7 +11,7 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::User::Profile;
-our $VERSION = '0.008';
+our $VERSION = '0.009';
 # ABSTRACT: Metabase report class for user-related facts
 
 use Carp ();
@@ -82,7 +82,7 @@ Metabase::User::Profile - Metabase report class for user-related facts
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 SYNOPSIS
 

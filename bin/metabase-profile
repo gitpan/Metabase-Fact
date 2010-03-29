@@ -12,7 +12,7 @@ use 5.006;
 use strict;
 use warnings;
 package main;
-our $VERSION = '0.008'; # dzil needs this
+our $VERSION = '0.009'; # dzil needs this
 # NAME: metabase-profile
 # ABSTRACT: create a metabase profile
 
@@ -89,7 +89,7 @@ metabase-profile - create a metabase profile
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 SYNOPSIS
 
