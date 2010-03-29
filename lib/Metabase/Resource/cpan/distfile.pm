@@ -11,7 +11,7 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource::cpan::distfile;
-our $VERSION = '0.009';
+our $VERSION = '0.010';
 # ABSTRACT: class for Metabase resources
 
 use Carp ();
@@ -94,7 +94,7 @@ Metabase::Resource::cpan::distfile - class for Metabase resources
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SYNOPSIS
 

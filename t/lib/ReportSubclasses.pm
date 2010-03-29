@@ -11,17 +11,17 @@ use strict;
 use warnings;
 
 package JustOneFact;
-our $VERSION = '0.009';
+our $VERSION = '0.010';
 our @ISA = ('Metabase::Report');
 sub report_spec { return {'Metabase::Fact' => 1} }
 
 package OneOrMoreFacts;
-our $VERSION = '0.009';
+our $VERSION = '0.010';
 our @ISA = ('Metabase::Report');
 sub report_spec { return {'Metabase::Fact' => '1+'} }
 
 package OneOfEach;
-our $VERSION = '0.009';
+our $VERSION = '0.010';
 our @ISA = ('Metabase::Report');
 sub report_spec { 
   return {
@@ -31,7 +31,7 @@ sub report_spec {
 }
 
 package OneSpecificAtLeastThreeTotal;
-our $VERSION = '0.009';
+our $VERSION = '0.010';
 our @ISA = ('Metabase::Report');
 sub report_spec { 
   return {

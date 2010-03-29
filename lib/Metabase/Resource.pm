@@ -11,7 +11,7 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource;
-our $VERSION = '0.009';
+our $VERSION = '0.010';
 # ABSTRACT: factory class for Metabase resource descriptors
 
 use Carp ();
@@ -131,7 +131,7 @@ Metabase::Resource - factory class for Metabase resource descriptors
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SYNOPSIS
 

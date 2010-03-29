@@ -8,7 +8,7 @@
 #   The Apache License, Version 2.0, January 2004
 # 
 package Test::Metabase::StringFact;
-our $VERSION = '0.009';
+our $VERSION = '0.010';
 use 5.006;
 use strict;
 use warnings;

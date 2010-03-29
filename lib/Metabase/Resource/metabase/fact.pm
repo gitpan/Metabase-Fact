@@ -11,7 +11,7 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource::metabase::fact;
-our $VERSION = '0.009';
+our $VERSION = '0.010';
 # ABSTRACT: class for Metabase facts
 
 use Carp ();
@@ -46,7 +46,7 @@ Metabase::Resource::metabase::fact - class for Metabase facts
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SYNOPSIS
 
