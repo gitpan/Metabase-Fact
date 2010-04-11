@@ -4,7 +4,7 @@ use warnings;
 
  BEGIN { require 5.006; } 
 
-use ExtUtils::MakeMaker 6.11;
+use ExtUtils::MakeMaker 6.31;
 
 
 
@@ -15,15 +15,13 @@ my %WriteMakefileArgs = (
                        'NAME' => 'Metabase::Fact',
                        'DISTNAME' => 'Metabase-Fact',
                        'CONFIGURE_REQUIRES' => {
-                                                 'ExtUtils::MakeMaker' => '6.11'
+                                                 'ExtUtils::MakeMaker' => '6.31'
                                                },
-                       'AUTHOR' => 'David Golden <dagolden@cpan.org>, Ricardo Signes <rjbs@cpan.org>',
+                       'AUTHOR' => 'David Golden <dagolden@cpan.org>, Ricardo Signes <rjbs@cpan.org>, H.Merijn Brand <hmbrand@cpan.org>',
                        'BUILD_REQUIRES' => {},
                        'ABSTRACT' => 'base class for Metabase Facts',
-                       'EXE_FILES' => [
-                                        'bin/metabase-profile'
-                                      ],
-                       'VERSION' => '0.011',
+                       'EXE_FILES' => [],
+                       'VERSION' => '0.012',
                        'PREREQ_PM' => {
                                         'Test::Exception' => '0',
                                         'File::Spec' => '3',
@@ -40,8 +38,11 @@ my %WriteMakefileArgs = (
                      );
 
 
-delete $WriteMakefileArgs{LICENSE}
-  unless eval { ExtUtils::MakeMaker->VERSION(6.31) };
+delete $WriteMakefileArgs{BUILD_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.56) };
+
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
 
 WriteMakefile(%WriteMakefileArgs);
 

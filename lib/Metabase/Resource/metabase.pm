@@ -11,7 +11,9 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource::metabase;
-our $VERSION = '0.011';
+BEGIN {
+  $Metabase::Resource::metabase::VERSION = '0.012';
+}
 # ABSTRACT: class for Metabase resources
 
 use Carp ();
@@ -58,7 +60,7 @@ Metabase::Resource::metabase - class for Metabase resources
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SYNOPSIS
 
@@ -116,6 +118,7 @@ existing test-file that illustrates the bug or desired feature.
 
   David Golden <dagolden@cpan.org>
   Ricardo Signes <rjbs@cpan.org>
+  H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

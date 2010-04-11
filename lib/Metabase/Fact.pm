@@ -11,7 +11,9 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Fact;
-our $VERSION = '0.011';
+BEGIN {
+  $Metabase::Fact::VERSION = '0.012';
+}
 # ABSTRACT: base class for Metabase Facts
 
 use Carp ();
@@ -388,7 +390,7 @@ Metabase::Fact - base class for Metabase Facts
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SYNOPSIS
 
@@ -802,6 +804,7 @@ existing test-file that illustrates the bug or desired feature.
 
   David Golden <dagolden@cpan.org>
   Ricardo Signes <rjbs@cpan.org>
+  H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

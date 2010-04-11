@@ -2,7 +2,7 @@ NAME
     Metabase::Fact - base class for Metabase Facts
 
 VERSION
-    version 0.011
+    version 0.012
 
 SYNOPSIS
       # defining the fact class
@@ -381,6 +381,7 @@ BUGS
 AUTHORS
       David Golden <dagolden@cpan.org>
       Ricardo Signes <rjbs@cpan.org>
+      H.Merijn Brand <hmbrand@cpan.org>
 
 COPYRIGHT AND LICENSE
     This software is Copyright (c) 2010 by David Golden.

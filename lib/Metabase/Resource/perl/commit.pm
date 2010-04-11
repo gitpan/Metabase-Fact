@@ -10,33 +10,46 @@
 use 5.006;
 use strict;
 use warnings;
-package Metabase::Resource::metabase::fact;
+package Metabase::Resource::perl::commit;
 BEGIN {
-  $Metabase::Resource::metabase::fact::VERSION = '0.012';
+  $Metabase::Resource::perl::commit::VERSION = '0.012';
 }
-# ABSTRACT: class for Metabase facts
+# ABSTRACT: class for Metabase resources about perl commits
 
 use Carp ();
 
-use base 'Metabase::Resource::metabase';
+use base 'Metabase::Resource::perl';
+
+my %metadata_types = (
+  sha1          => '//str',
+);
 
 sub _init {
   my ($self) = @_;
   my ($scheme, $subtype) = ($self->scheme, $self->subtype);
-  my ($guid) = $self =~ m{\A$scheme:$subtype:(.+)\z};
-  Carp::confess("could not determine URI subtype from '$self'\n")
-    unless defined $guid && length $guid;
-  $self->_add( guid => '//str' =>  $guid);
+
+  my ($string) = $self =~ m{\A$scheme:///$subtype/(.+)\z};
+  Carp::confess("could not determine commit from '$self'\n")
+    unless defined $string && length $string;
+
+  my $sha1 = $1;
+  Carp::confess("illegal commit hash")
+    unless $sha1 =~ m/^[a-f0-9]+$/;
+
+  $self->_add( 'sha1' => $metadata_types{sha1} => $sha1 );
+
   return $self;
 }
 
-sub validate {
-  my $self = shift;
-  $self->_validate_guid( $self->guid );
-  return 1;
+sub full_url {
+  my ($self, $host) = @_;
+  $host ||= 'perl5.git.perl.org';
+  return "http://${host}/perl.git/" . $self->sha1;
 }
 
-1;
+# 'commit' validates during _init, really
+sub validate { 1 }
+
 
 
 
@@ -44,7 +57,7 @@ sub validate {
 
 =head1 NAME
 
-Metabase::Resource::metabase::fact - class for Metabase facts
+Metabase::Resource::perl::commit - class for Metabase resources about perl commits
 
 =head1 VERSION
 
@@ -53,23 +66,27 @@ version 0.012
 =head1 SYNOPSIS
 
   my $resource = Metabase::Resource->new(
-    "metabase:fact:B66C7662-1D34-11DE-A668-0DF08D1878C0"
+    'perl:///commit/8c576062',
   );
 
   my $resource_meta = $resource->metadata;
   my $typemap       = $resource->metadata_types;
-
-  my $user_id = $resource->guid;
+  my $url = $self->full_url;
 
 =head1 DESCRIPTION
 
-This resource is for a Metabase fact. (I.e. corresponding to the GUID of a
-Metabase::Fact subclass.) For the example above, the resource metadata
-structure would contain the following elements:
+Generates resource metadata for resources of the scheme 'perl:///commit'.
 
-  scheme       => metabase
-  subtype      => subtype
-  guid         => b66c7662-1d34-11de-a668-0df08d1878c0
+  my $resource = Metabase::Resource->new(
+    'perl:///commit/8c576062',
+  );
+
+For the example above, the resource metadata structure would contain the
+following elements:
+
+  scheme       => perl
+  type         => commit
+  sha1         => 8c576062
 
 =head1 BUGS
 
@@ -98,5 +115,8 @@ This is free software, licensed under:
 
 
 __END__
+
+
+
 
 

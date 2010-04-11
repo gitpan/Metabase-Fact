@@ -10,41 +10,47 @@
 use 5.006;
 use strict;
 use warnings;
-package Metabase::Resource::metabase::fact;
+package Metabase::Resource::perl;
 BEGIN {
-  $Metabase::Resource::metabase::fact::VERSION = '0.012';
+  $Metabase::Resource::perl::VERSION = '0.012';
 }
-# ABSTRACT: class for Metabase facts
+# ABSTRACT: class for Metabase resources under the perl scheme
 
 use Carp ();
 
-use base 'Metabase::Resource::metabase';
+use base 'Metabase::Resource';
 
 sub _init {
   my ($self) = @_;
-  my ($scheme, $subtype) = ($self->scheme, $self->subtype);
-  my ($guid) = $self =~ m{\A$scheme:$subtype:(.+)\z};
-  Carp::confess("could not determine URI subtype from '$self'\n")
-    unless defined $guid && length $guid;
-  $self->_add( guid => '//str' =>  $guid);
-  return $self;
-}
+  my $scheme = $self->scheme;
 
-sub validate {
-  my $self = shift;
-  $self->_validate_guid( $self->guid );
-  return 1;
+  # determine subtype
+  # Possible sub-types could be:
+  #  - commit
+  #  - tag -- not implemented
+  #  - tarball -- not implemented
+  my ($subtype) = $self =~ m{\A$scheme:///([^/]+)/};
+  Carp::confess("could not determine URI subtype from '$self'\n")
+    unless defined $subtype && length $subtype;
+  $self->_add( subtype => '//str' =>  $subtype);
+
+  # rebless into subclass and finish initialization
+  my $subclass = __PACKAGE__ . "::$subtype";
+  $self->_load($subclass);
+  bless $self, $subclass;
+  return $self->_init;
 }
 
 1;
 
 
 
+__END__
 =pod
 
 =head1 NAME
 
-Metabase::Resource::metabase::fact - class for Metabase facts
+Metabase::Resource::perl - class for Metabase resources under the perl scheme
 
 =head1 VERSION
 
@@ -53,23 +59,30 @@ version 0.012
 =head1 SYNOPSIS
 
   my $resource = Metabase::Resource->new(
-    "metabase:fact:B66C7662-1D34-11DE-A668-0DF08D1878C0"
+    'perl:///commit/8c576062',
   );
 
   my $resource_meta = $resource->metadata;
   my $typemap       = $resource->metadata_types;
 
-  my $user_id = $resource->guid;
-
 =head1 DESCRIPTION
 
-This resource is for a Metabase fact. (I.e. corresponding to the GUID of a
-Metabase::Fact subclass.) For the example above, the resource metadata
-structure would contain the following elements:
+Generates resource metadata for resources of the scheme 'perl'.
 
-  scheme       => metabase
-  subtype      => subtype
-  guid         => b66c7662-1d34-11de-a668-0df08d1878c0
+The L<Metabase::Resource::perl> class supports the followng sub-type(s).
+
+=head2 commit
+
+  my $resource = Metabase::Resource->new(
+    'perl:///commit/8c576062',
+  );
+
+For the example above, the resource metadata structure would contain the
+following elements:
+
+  scheme       => perl
+  type         => commit
+  sha1         => 8c576062
 
 =head1 BUGS
 
@@ -95,8 +108,4 @@ This is free software, licensed under:
   The Apache License, Version 2.0, January 2004
 
 =cut
-
-
-__END__
-
 

@@ -11,7 +11,9 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource;
-our $VERSION = '0.011';
+BEGIN {
+  $Metabase::Resource::VERSION = '0.012';
+}
 # ABSTRACT: factory class for Metabase resource descriptors
 
 use Carp ();
@@ -131,7 +133,7 @@ Metabase::Resource - factory class for Metabase resource descriptors
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SYNOPSIS
 
@@ -299,6 +301,7 @@ existing test-file that illustrates the bug or desired feature.
 
   David Golden <dagolden@cpan.org>
   Ricardo Signes <rjbs@cpan.org>
+  H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

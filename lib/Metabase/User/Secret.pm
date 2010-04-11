@@ -11,7 +11,9 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::User::Secret;
-our $VERSION = '0.011';
+BEGIN {
+  $Metabase::User::Secret::VERSION = '0.012';
+}
 # ABSTRACT: Metabase fact for user shared authentication secret
 
 use base 'Metabase::Fact::String';
@@ -35,7 +37,7 @@ Metabase::User::Secret - Metabase fact for user shared authentication secret
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SYNOPSIS
 
@@ -62,6 +64,7 @@ existing test-file that illustrates the bug or desired feature.
 
   David Golden <dagolden@cpan.org>
   Ricardo Signes <rjbs@cpan.org>
+  H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

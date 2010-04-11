@@ -11,7 +11,9 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource::cpan::distfile;
-our $VERSION = '0.011';
+BEGIN {
+  $Metabase::Resource::cpan::distfile::VERSION = '0.012';
+}
 # ABSTRACT: class for Metabase resources
 
 use Carp ();
@@ -94,7 +96,7 @@ Metabase::Resource::cpan::distfile - class for Metabase resources
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SYNOPSIS
 
@@ -107,11 +109,7 @@ version 0.011
 
 =head1 DESCRIPTION
 
-Generates resource metadata for resources of the scheme 'cpan'.
-
-The L<Metabase::Resource::cpan> class supports the followng sub-type(s).
-
-=head2 distfile
+Generates resource metadata for resources of the scheme 'cpan:///distfile'.
 
   my $resource = Metabase::Resource->new(
     'cpan:///distfile/RJBS/URI-cpan-1.000.tar.gz',
@@ -140,6 +138,7 @@ existing test-file that illustrates the bug or desired feature.
 
   David Golden <dagolden@cpan.org>
   Ricardo Signes <rjbs@cpan.org>
+  H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
