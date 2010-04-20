@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::User::Secret;
 BEGIN {
-  $Metabase::User::Secret::VERSION = '0.012';
+  $Metabase::User::Secret::VERSION = '0.013';
 }
 # ABSTRACT: Metabase fact for user shared authentication secret
 
@@ -37,7 +37,7 @@ Metabase::User::Secret - Metabase fact for user shared authentication secret
 
 =head1 VERSION
 
-version 0.012
+version 0.013
 
 =head1 SYNOPSIS
 

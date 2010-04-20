@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::User::FullName;
 BEGIN {
-  $Metabase::User::FullName::VERSION = '0.012';
+  $Metabase::User::FullName::VERSION = '0.013';
 }
 # ABSTRACT: Metabase fact for user full name
 
@@ -30,7 +30,7 @@ Metabase::User::FullName - Metabase fact for user full name
 
 =head1 VERSION
 
-version 0.012
+version 0.013
 
 =head1 SYNOPSIS
 

@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::User::Profile;
 BEGIN {
-  $Metabase::User::Profile::VERSION = '0.012';
+  $Metabase::User::Profile::VERSION = '0.013';
 }
 # ABSTRACT: Metabase report class for user-related facts
 
@@ -84,7 +84,7 @@ Metabase::User::Profile - Metabase report class for user-related facts
 
 =head1 VERSION
 
-version 0.012
+version 0.013
 
 =head1 SYNOPSIS
 

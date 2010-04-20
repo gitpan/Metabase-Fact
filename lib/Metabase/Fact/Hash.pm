@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::Fact::Hash;
 BEGIN {
-  $Metabase::Fact::Hash::VERSION = '0.012';
+  $Metabase::Fact::Hash::VERSION = '0.013';
 }
 # ABSTRACT: fact subtype for simple hashes
 
@@ -21,18 +21,16 @@ use JSON 2 ();
 
 use base 'Metabase::Fact';
 
-sub _dlength { defined( $_[0] ) && length( $_[0] ) }
-
 sub validate_content {
   my ($self) = @_;
   my $content = $self->content;
   my $class = ref $self;
   Carp::confess "content must be a hashref"
     unless ref $content eq 'HASH';
-  my $get_req =$self->can('required_keys') || sub { () }; 
-  my $get_opt =$self->can('optional_keys') || sub { () }; 
+  my $get_req =$self->can('required_keys') || sub { () };
+  my $get_opt =$self->can('optional_keys') || sub { () };
   # find missing
-  my @missing =  grep { ! _dlength( $content->{$_} ) } $get_req->();
+  my @missing =  grep { ! exists $content->{$_} } $get_req->();
   Carp::croak "missing required keys for $class\: @missing\n" if @missing;
   # check for invalid
   my %valid = map { $_ => 1 } ($get_req->(), $get_opt->());
@@ -46,7 +44,7 @@ sub content_as_bytes {
   return JSON->new->ascii->encode($self->content);
 }
 
-sub content_from_bytes { 
+sub content_from_bytes {
   my ($class, $bytes) = @_;
   return JSON->new->ascii->decode($bytes);
 }
@@ -63,7 +61,7 @@ Metabase::Fact::Hash - fact subtype for simple hashes
 
 =head1 VERSION
 
-version 0.012
+version 0.013
 
 =head1 SYNOPSIS
 
@@ -109,11 +107,14 @@ data.  Metabase::Fact::Hash is a subclass of L<Metabase::Fact|Metabase::Fact>
 with most of the required Fact methods already implemented.  If you write your
 class as a subclass of Metabase::Fact::Hash, you can store simple hashes in it.
 
+You should implement C<required_keys> and/or C<optional_keys> as shown in the
+SYNOPSIS.  The superclass C<valiate_content> will ensure that required keys
+exist and that only required an optional keys exist.  You may wish to subclass
+C<validate_content> to validate the specific content of the hash given to the
+constructor.
+
 You may wish to implement a C<content_metadata> method to generate metadata
 about the hash contents.
-
-You should also implement a C<validate_content> method to validate the
-structure of the hash you're given.
 
 =head1 ATTRIBUTES
 
@@ -140,8 +141,8 @@ L<Metabase::Fact|Metabase::Fact>.
 
 =head1 BUGS
 
-Please report any bugs or feature using the CPAN Request Tracker.  
-Bugs can be submitted through the web interface at 
+Please report any bugs or feature using the CPAN Request Tracker.
+Bugs can be submitted through the web interface at
 L<http://rt.cpan.org/Dist/Display.html?Queue=Metabase-Fact>
 
 When submitting a bug or request, please include a test file or a patch to an

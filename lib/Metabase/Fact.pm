@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::Fact;
 BEGIN {
-  $Metabase::Fact::VERSION = '0.012';
+  $Metabase::Fact::VERSION = '0.013';
 }
 # ABSTRACT: base class for Metabase Facts
 
@@ -390,7 +390,7 @@ Metabase::Fact - base class for Metabase Facts
 
 =head1 VERSION
 
-version 0.012
+version 0.013
 
 =head1 SYNOPSIS
 

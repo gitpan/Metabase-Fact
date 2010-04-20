@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::Resource::perl::commit;
 BEGIN {
-  $Metabase::Resource::perl::commit::VERSION = '0.012';
+  $Metabase::Resource::perl::commit::VERSION = '0.013';
 }
 # ABSTRACT: class for Metabase resources about perl commits
 
@@ -41,6 +41,7 @@ sub _init {
   return $self;
 }
 
+
 sub full_url {
   my ($self, $host) = @_;
   $host ||= 'perl5.git.perl.org';
@@ -61,7 +62,7 @@ Metabase::Resource::perl::commit - class for Metabase resources about perl commi
 
 =head1 VERSION
 
-version 0.012
+version 0.013
 
 =head1 SYNOPSIS
 
@@ -87,6 +88,16 @@ following elements:
   scheme       => perl
   type         => commit
   sha1         => 8c576062
+
+=head1 METHODS
+
+=head2 full_url
+
+  my $url = $self->full_url($host);
+
+Returns an ordinary HTTP URL to the resource.  If C<$host> is not
+given, it defaults to the official master Perl repository at
+L<http://perl5.git.perl.org>.
 
 =head1 BUGS
 
