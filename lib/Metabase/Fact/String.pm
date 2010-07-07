@@ -12,12 +12,11 @@ use strict;
 use warnings;
 package Metabase::Fact::String;
 BEGIN {
-  $Metabase::Fact::String::VERSION = '0.013';
+  $Metabase::Fact::String::VERSION = '0.015';
 }
 # ABSTRACT: fact subtype for simple strings
 
 use Carp ();
-use utf8 (); # don't import since this source file is not in utf8
 
 use base 'Metabase::Fact';
 
@@ -32,13 +31,13 @@ sub validate_content {
 sub content_as_bytes {
   my ($self) = @_;
   my $bytes = $self->content;
-  utf8::encode($bytes); # converts in-place
+  utf8::encode($bytes) if $] ge '5.008'; # converts in-place
   return $bytes;
 }
 
 sub content_from_bytes { 
   my ($class, $bytes) = @_;
-  utf8::decode($bytes); # converts in-place
+  utf8::decode($bytes) if $] ge '5.008'; # converts in-place
   return $bytes;
 }
 
@@ -54,7 +53,7 @@ Metabase::Fact::String - fact subtype for simple strings
 
 =head1 VERSION
 
-version 0.013
+version 0.015
 
 =head1 SYNOPSIS
 

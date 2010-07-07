@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::User::EmailAddress;
 BEGIN {
-  $Metabase::User::EmailAddress::VERSION = '0.013';
+  $Metabase::User::EmailAddress::VERSION = '0.015';
 }
 # ABSTRACT: Metabase fact for user email address
 
@@ -30,7 +30,7 @@ Metabase::User::EmailAddress - Metabase fact for user email address
 
 =head1 VERSION
 
-version 0.013
+version 0.015
 
 =head1 SYNOPSIS
 

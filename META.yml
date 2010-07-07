@@ -4,10 +4,17 @@ author:
   - 'David Golden <dagolden@cpan.org>'
   - 'Ricardo Signes <rjbs@cpan.org>'
   - 'H.Merijn Brand <hmbrand@cpan.org>'
-build_requires: {}
+build_requires:
+  Cwd: 0
+  File::Find: 0
+  File::Spec: 0
+  File::Temp: 0.20
+  Test::Exception: 0
+  Test::More: 0.88
 configure_requires:
   ExtUtils::MakeMaker: 6.31
-generated_by: 'Dist::Zilla version 2.101040'
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.101831, CPAN::Meta::Converter version 2.101590'
 license: apache
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -18,19 +25,65 @@ no_index:
     - t
     - xt
     - examples
-recommends: {}
+    - corpus
+provides:
+  Metabase::Fact:
+    file: lib/Metabase/Fact.pm
+    version: 0.015
+  Metabase::Fact::Hash:
+    file: lib/Metabase/Fact/Hash.pm
+    version: 0.015
+  Metabase::Fact::String:
+    file: lib/Metabase/Fact/String.pm
+    version: 0.015
+  Metabase::Report:
+    file: lib/Metabase/Report.pm
+    version: 0.015
+  Metabase::Resource:
+    file: lib/Metabase/Resource.pm
+    version: 0.015
+  Metabase::Resource::cpan:
+    file: lib/Metabase/Resource/cpan.pm
+    version: 0.015
+  Metabase::Resource::cpan::distfile:
+    file: lib/Metabase/Resource/cpan/distfile.pm
+    version: 0.015
+  Metabase::Resource::metabase:
+    file: lib/Metabase/Resource/metabase.pm
+    version: 0.015
+  Metabase::Resource::metabase::fact:
+    file: lib/Metabase/Resource/metabase/fact.pm
+    version: 0.015
+  Metabase::Resource::metabase::user:
+    file: lib/Metabase/Resource/metabase/user.pm
+    version: 0.015
+  Metabase::Resource::perl:
+    file: lib/Metabase/Resource/perl.pm
+    version: 0.015
+  Metabase::Resource::perl::commit:
+    file: lib/Metabase/Resource/perl/commit.pm
+    version: 0.015
+  Metabase::User::EmailAddress:
+    file: lib/Metabase/User/EmailAddress.pm
+    version: 0.015
+  Metabase::User::FullName:
+    file: lib/Metabase/User/FullName.pm
+    version: 0.015
+  Metabase::User::Profile:
+    file: lib/Metabase/User/Profile.pm
+    version: 0.015
+  Metabase::User::Secret:
+    file: lib/Metabase/User/Secret.pm
+    version: 0.015
 requires:
   CPAN::DistnameInfo: 0
   Carp: 0
-  Cwd: 0
   Data::GUID: 0
-  File::Find: 0
-  File::Spec: 3
-  File::Temp: 0.20
+  Getopt::Long: 0
   JSON: 2
-  Test::Exception: 0
-  Test::More: 0.88
+  Pod::Usage: 0
+  overload: 0
   perl: 5.006
 resources:
   repository: http://github.com/dagolden/metabase-fact
-version: 0.013
+version: 0.015

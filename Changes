@@ -1,5 +1,17 @@
 Revision history for Metabase-Fact
 
+0.015     2010-07-07 11:49:30 EST5EDT
+
+  - Identical to 0.014 (which was intentionally not released to CPAN to
+    test a Dist::Zilla upgrade)
+
+0.014     2010-07-07 11:45:42 EST5EDT
+
+  - Ensure metabase-profile gets installed (it was lost due to a stale
+    dist.ini)
+
+  - Make use of utf8::encode/decode conditional on 5.008
+
 0.013     2010-04-19 20:49:18 EST5EDT
 
   - Weaken validation of keys in Metabase::Fact::Hash.  They must exist,

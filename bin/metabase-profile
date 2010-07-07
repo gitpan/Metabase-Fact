@@ -11,7 +11,10 @@
 use 5.006;
 use strict;
 use warnings;
-package main; # dzil needs this
+package main;
+BEGIN {
+  $main::VERSION = '0.015';
+} # dzil needs this
 # NAME: metabase-profile
 # ABSTRACT: create a metabase profile
 

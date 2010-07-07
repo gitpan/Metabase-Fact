@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::Resource::cpan;
 BEGIN {
-  $Metabase::Resource::cpan::VERSION = '0.013';
+  $Metabase::Resource::cpan::VERSION = '0.015';
 }
 # ABSTRACT: class for Metabase resources
 
@@ -50,7 +50,7 @@ Metabase::Resource::cpan - class for Metabase resources
 
 =head1 VERSION
 
-version 0.013
+version 0.015
 
 =head1 SYNOPSIS
 

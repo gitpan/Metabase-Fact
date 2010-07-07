@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::Report;
 BEGIN {
-  $Metabase::Report::VERSION = '0.013';
+  $Metabase::Report::VERSION = '0.015';
 }
 # ABSTRACT: a base class for collections of Metabase facts
 
@@ -232,7 +232,7 @@ Metabase::Report - a base class for collections of Metabase facts
 
 =head1 VERSION
 
-version 0.013
+version 0.015
 
 =head1 SYNOPSIS
 
