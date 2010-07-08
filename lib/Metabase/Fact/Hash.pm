@@ -12,14 +12,15 @@ use strict;
 use warnings;
 package Metabase::Fact::Hash;
 BEGIN {
-  $Metabase::Fact::Hash::VERSION = '0.015';
+  $Metabase::Fact::Hash::VERSION = '0.016';
 }
 # ABSTRACT: fact subtype for simple hashes
 
 use Carp ();
 use JSON 2 ();
 
-use base 'Metabase::Fact';
+use Metabase::Fact;
+our @ISA = qw/Metabase::Fact/;
 
 sub validate_content {
   my ($self) = @_;
@@ -61,13 +62,14 @@ Metabase::Fact::Hash - fact subtype for simple hashes
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 
   # defining the fact class
   package MyComment;
-  use base 'Metabase::Fact::Hash';
+  use Metabase::Fact::Hash;
+  our @ISA = qw/Metabase::Fact::Hash/;
 
   sub required_keys { qw/poster/ }
 

@@ -12,13 +12,14 @@ use strict;
 use warnings;
 package Metabase::Resource::perl;
 BEGIN {
-  $Metabase::Resource::perl::VERSION = '0.015';
+  $Metabase::Resource::perl::VERSION = '0.016';
 }
 # ABSTRACT: class for Metabase resources under the perl scheme
 
 use Carp ();
 
-use base 'Metabase::Resource';
+use Metabase::Resource;
+our @ISA = qw/Metabase::Resource/;
 
 sub _init {
   my ($self) = @_;
@@ -54,7 +55,7 @@ Metabase::Resource::perl - class for Metabase resources under the perl scheme
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 

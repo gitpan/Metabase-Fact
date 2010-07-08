@@ -2,12 +2,13 @@ NAME
     Metabase::Fact - base class for Metabase Facts
 
 VERSION
-    version 0.015
+    version 0.016
 
 SYNOPSIS
       # defining the fact class
       package MyFact;
-      use base 'Metabase::Fact::Hash';
+      use Metabase::Fact::Hash;
+      our @ISA = qw/Metabase::Fact::Hash/;
 
       # using the fact class
       my $fact = TestReport->new(

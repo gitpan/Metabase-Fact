@@ -12,14 +12,16 @@ use strict;
 use warnings;
 package Metabase::User::Profile;
 BEGIN {
-  $Metabase::User::Profile::VERSION = '0.015';
+  $Metabase::User::Profile::VERSION = '0.016';
 }
 # ABSTRACT: Metabase report class for user-related facts
 
 use Carp ();
 use Data::GUID guid_string => { -as => '_guid' };
 
-use base 'Metabase::Report';
+use Metabase::Report;
+our @ISA = qw/Metabase::Report/;
+
 __PACKAGE__->load_fact_classes;
 
 #--------------------------------------------------------------------------#
@@ -84,7 +86,7 @@ Metabase::User::Profile - Metabase report class for user-related facts
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 

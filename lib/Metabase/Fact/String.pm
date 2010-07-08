@@ -12,13 +12,14 @@ use strict;
 use warnings;
 package Metabase::Fact::String;
 BEGIN {
-  $Metabase::Fact::String::VERSION = '0.015';
+  $Metabase::Fact::String::VERSION = '0.016';
 }
 # ABSTRACT: fact subtype for simple strings
 
 use Carp ();
 
-use base 'Metabase::Fact';
+use Metabase::Fact;
+our @ISA = qw/Metabase::Fact/;
 
 # document that content must be characters, not bytes -- dagolden, 2009-03-28 
 
@@ -53,13 +54,14 @@ Metabase::Fact::String - fact subtype for simple strings
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 
   # defining the fact class
   package MyFact;
-  use base 'Metabase::Fact::String';
+  use Metabase::Fact::String;
+  our @ISA = qw/Metabase::Fact::String/;
 
   sub content_metadata {
     my $self = shift;

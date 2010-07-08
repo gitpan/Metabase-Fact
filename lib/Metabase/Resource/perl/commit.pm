@@ -12,13 +12,14 @@ use strict;
 use warnings;
 package Metabase::Resource::perl::commit;
 BEGIN {
-  $Metabase::Resource::perl::commit::VERSION = '0.015';
+  $Metabase::Resource::perl::commit::VERSION = '0.016';
 }
 # ABSTRACT: class for Metabase resources about perl commits
 
 use Carp ();
 
-use base 'Metabase::Resource::perl';
+use Metabase::Resource::perl;
+our @ISA = qw/Metabase::Resource::perl/;
 
 my %metadata_types = (
   sha1          => '//str',
@@ -62,7 +63,7 @@ Metabase::Resource::perl::commit - class for Metabase resources about perl commi
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 

@@ -1,5 +1,9 @@
 Revision history for Metabase-Fact
 
+0.016     2010-07-07 22:03:14 EST5EDT
+
+  - Removing 'use base' throughout to attempt to squash some heisenbugs
+
 0.015     2010-07-07 11:49:30 EST5EDT
 
   - Identical to 0.014 (which was intentionally not released to CPAN to

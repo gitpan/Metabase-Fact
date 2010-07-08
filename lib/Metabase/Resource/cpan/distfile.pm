@@ -12,14 +12,15 @@ use strict;
 use warnings;
 package Metabase::Resource::cpan::distfile;
 BEGIN {
-  $Metabase::Resource::cpan::distfile::VERSION = '0.015';
+  $Metabase::Resource::cpan::distfile::VERSION = '0.016';
 }
 # ABSTRACT: class for Metabase resources
 
 use Carp ();
 use CPAN::DistnameInfo ();
 
-use base 'Metabase::Resource::cpan';
+use Metabase::Resource::cpan;
+our @ISA = qw/Metabase::Resource::cpan/;
 
 my %metadata_types = (
   cpan_id       => '//str',
@@ -96,7 +97,7 @@ Metabase::Resource::cpan::distfile - class for Metabase resources
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 

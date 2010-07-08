@@ -29,52 +29,52 @@ no_index:
 provides:
   Metabase::Fact:
     file: lib/Metabase/Fact.pm
-    version: 0.015
+    version: 0.016
   Metabase::Fact::Hash:
     file: lib/Metabase/Fact/Hash.pm
-    version: 0.015
+    version: 0.016
   Metabase::Fact::String:
     file: lib/Metabase/Fact/String.pm
-    version: 0.015
+    version: 0.016
   Metabase::Report:
     file: lib/Metabase/Report.pm
-    version: 0.015
+    version: 0.016
   Metabase::Resource:
     file: lib/Metabase/Resource.pm
-    version: 0.015
+    version: 0.016
   Metabase::Resource::cpan:
     file: lib/Metabase/Resource/cpan.pm
-    version: 0.015
+    version: 0.016
   Metabase::Resource::cpan::distfile:
     file: lib/Metabase/Resource/cpan/distfile.pm
-    version: 0.015
+    version: 0.016
   Metabase::Resource::metabase:
     file: lib/Metabase/Resource/metabase.pm
-    version: 0.015
+    version: 0.016
   Metabase::Resource::metabase::fact:
     file: lib/Metabase/Resource/metabase/fact.pm
-    version: 0.015
+    version: 0.016
   Metabase::Resource::metabase::user:
     file: lib/Metabase/Resource/metabase/user.pm
-    version: 0.015
+    version: 0.016
   Metabase::Resource::perl:
     file: lib/Metabase/Resource/perl.pm
-    version: 0.015
+    version: 0.016
   Metabase::Resource::perl::commit:
     file: lib/Metabase/Resource/perl/commit.pm
-    version: 0.015
+    version: 0.016
   Metabase::User::EmailAddress:
     file: lib/Metabase/User/EmailAddress.pm
-    version: 0.015
+    version: 0.016
   Metabase::User::FullName:
     file: lib/Metabase/User/FullName.pm
-    version: 0.015
+    version: 0.016
   Metabase::User::Profile:
     file: lib/Metabase/User/Profile.pm
-    version: 0.015
+    version: 0.016
   Metabase::User::Secret:
     file: lib/Metabase/User/Secret.pm
-    version: 0.015
+    version: 0.016
 requires:
   CPAN::DistnameInfo: 0
   Carp: 0
@@ -86,4 +86,4 @@ requires:
   perl: 5.006
 resources:
   repository: http://github.com/dagolden/metabase-fact
-version: 0.015
+version: 0.016

@@ -12,11 +12,12 @@ use strict;
 use warnings;
 package Metabase::User::Secret;
 BEGIN {
-  $Metabase::User::Secret::VERSION = '0.015';
+  $Metabase::User::Secret::VERSION = '0.016';
 }
 # ABSTRACT: Metabase fact for user shared authentication secret
 
-use base 'Metabase::Fact::String';
+use Metabase::Fact::String;
+our @ISA = qw/Metabase::Fact::String/;
 
 sub new {
   my $class = shift;
@@ -37,7 +38,7 @@ Metabase::User::Secret - Metabase fact for user shared authentication secret
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 

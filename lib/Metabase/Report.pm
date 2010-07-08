@@ -12,14 +12,15 @@ use strict;
 use warnings;
 package Metabase::Report;
 BEGIN {
-  $Metabase::Report::VERSION = '0.015';
+  $Metabase::Report::VERSION = '0.016';
 }
 # ABSTRACT: a base class for collections of Metabase facts
 
 use Carp ();
 use JSON 2 ();
 
-use base 'Metabase::Fact';
+use Metabase::Fact;
+our @ISA = qw/Metabase::Fact/;
 
 #--------------------------------------------------------------------------#
 # abstract methods -- fatal
@@ -232,13 +233,14 @@ Metabase::Report - a base class for collections of Metabase facts
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 
   package MyReport;
 
-  use base 'Metabase::Report';
+  use Metabase::Report;
+  our @ISA = qw/Metabase::Report/;
   __PACKAGE__->load_fact_classes;
 
   sub report_spec {

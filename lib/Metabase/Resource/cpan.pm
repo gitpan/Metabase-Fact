@@ -12,14 +12,15 @@ use strict;
 use warnings;
 package Metabase::Resource::cpan;
 BEGIN {
-  $Metabase::Resource::cpan::VERSION = '0.015';
+  $Metabase::Resource::cpan::VERSION = '0.016';
 }
 # ABSTRACT: class for Metabase resources
 
 use Carp ();
 use CPAN::DistnameInfo ();
 
-use base 'Metabase::Resource';
+use Metabase::Resource;
+our @ISA = qw/Metabase::Resource/;
 
 sub _init {
   my ($self) = @_;
@@ -50,7 +51,7 @@ Metabase::Resource::cpan - class for Metabase resources
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 

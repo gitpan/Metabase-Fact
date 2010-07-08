@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::Fact;
 BEGIN {
-  $Metabase::Fact::VERSION = '0.015';
+  $Metabase::Fact::VERSION = '0.016';
 }
 # ABSTRACT: base class for Metabase Facts
 
@@ -390,13 +390,14 @@ Metabase::Fact - base class for Metabase Facts
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 
   # defining the fact class
   package MyFact;
-  use base 'Metabase::Fact::Hash';
+  use Metabase::Fact::Hash;
+  our @ISA = qw/Metabase::Fact::Hash/;
 
   # using the fact class
   my $fact = TestReport->new(

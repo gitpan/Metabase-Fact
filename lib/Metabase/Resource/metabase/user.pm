@@ -12,13 +12,14 @@ use strict;
 use warnings;
 package Metabase::Resource::metabase::user;
 BEGIN {
-  $Metabase::Resource::metabase::user::VERSION = '0.015';
+  $Metabase::Resource::metabase::user::VERSION = '0.016';
 }
 # ABSTRACT: class for Metabase user profiles
 
 use Carp ();
 
-use base 'Metabase::Resource::metabase';
+use Metabase::Resource::metabase;
+our @ISA = qw/Metabase::Resource::metabase/;
 
 sub _init {
   my ($self) = @_;
@@ -48,7 +49,7 @@ Metabase::Resource::metabase::user - class for Metabase user profiles
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 

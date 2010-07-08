@@ -12,13 +12,14 @@ use strict;
 use warnings;
 package Metabase::Resource::metabase;
 BEGIN {
-  $Metabase::Resource::metabase::VERSION = '0.015';
+  $Metabase::Resource::metabase::VERSION = '0.016';
 }
 # ABSTRACT: class for Metabase resources
 
 use Carp ();
 
-use base 'Metabase::Resource';
+use Metabase::Resource;
+our @ISA = qw/Metabase::Resource/;
 
 my $hex = '[0-9a-f]';
 my $guid_re = qr(\A$hex{8}-$hex{4}-$hex{4}-$hex{4}-$hex{12}\z)i;
@@ -60,7 +61,7 @@ Metabase::Resource::metabase - class for Metabase resources
 
 =head1 VERSION
 
-version 0.015
+version 0.016
 
 =head1 SYNOPSIS
 
