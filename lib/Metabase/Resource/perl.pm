@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::Resource::perl;
 BEGIN {
-  $Metabase::Resource::perl::VERSION = '0.016';
+  $Metabase::Resource::perl::VERSION = '0.017';
 }
 # ABSTRACT: class for Metabase resources under the perl scheme
 
@@ -55,7 +55,7 @@ Metabase::Resource::perl - class for Metabase resources under the perl scheme
 
 =head1 VERSION
 
-version 0.016
+version 0.017
 
 =head1 SYNOPSIS
 
@@ -96,9 +96,21 @@ existing test-file that illustrates the bug or desired feature.
 
 =head1 AUTHORS
 
-  David Golden <dagolden@cpan.org>
-  Ricardo Signes <rjbs@cpan.org>
-  H.Merijn Brand <hmbrand@cpan.org>
+=over 4
+
+=item *
+
+David Golden <dagolden@cpan.org>
+
+=item *
+
+Ricardo Signes <rjbs@cpan.org>
+
+=item *
+
+H.Merijn Brand <hmbrand@cpan.org>
+
+=back
 
 =head1 COPYRIGHT AND LICENSE
 

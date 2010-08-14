@@ -13,7 +13,7 @@ use strict;
 use warnings;
 package main;
 BEGIN {
-  $main::VERSION = '0.016';
+  $main::VERSION = '0.017';
 } # dzil needs this
 # NAME: metabase-profile
 # ABSTRACT: create a metabase profile

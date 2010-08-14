@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::Report;
 BEGIN {
-  $Metabase::Report::VERSION = '0.016';
+  $Metabase::Report::VERSION = '0.017';
 }
 # ABSTRACT: a base class for collections of Metabase facts
 
@@ -213,11 +213,7 @@ sub fact_classes {
 
 sub load_fact_classes {
   my ($self) = @_;
-
-  for my $f ( $self->fact_classes ) {
-    eval "require $f; 1" or Carp::confess "Could not load '$f': $@";
-  }
-
+  $self->_load_fact_class( $_ ) for $self->fact_classes;
   return;
 }
 
@@ -233,7 +229,7 @@ Metabase::Report - a base class for collections of Metabase facts
 
 =head1 VERSION
 
-version 0.016
+version 0.017
 
 =head1 SYNOPSIS
 
@@ -357,9 +353,21 @@ existing test-file that illustrates the bug or desired feature.
 
 =head1 AUTHORS
 
-  David Golden <dagolden@cpan.org>
-  Ricardo Signes <rjbs@cpan.org>
-  H.Merijn Brand <hmbrand@cpan.org>
+=over 4
+
+=item *
+
+David Golden <dagolden@cpan.org>
+
+=item *
+
+Ricardo Signes <rjbs@cpan.org>
+
+=item *
+
+H.Merijn Brand <hmbrand@cpan.org>
+
+=back
 
 =head1 COPYRIGHT AND LICENSE
 

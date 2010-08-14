@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::User::EmailAddress;
 BEGIN {
-  $Metabase::User::EmailAddress::VERSION = '0.016';
+  $Metabase::User::EmailAddress::VERSION = '0.017';
 }
 # ABSTRACT: Metabase fact for user email address
 
@@ -31,7 +31,7 @@ Metabase::User::EmailAddress - Metabase fact for user email address
 
 =head1 VERSION
 
-version 0.016
+version 0.017
 
 =head1 SYNOPSIS
 
@@ -59,9 +59,21 @@ existing test-file that illustrates the bug or desired feature.
 
 =head1 AUTHORS
 
-  David Golden <dagolden@cpan.org>
-  Ricardo Signes <rjbs@cpan.org>
-  H.Merijn Brand <hmbrand@cpan.org>
+=over 4
+
+=item *
+
+David Golden <dagolden@cpan.org>
+
+=item *
+
+Ricardo Signes <rjbs@cpan.org>
+
+=item *
+
+H.Merijn Brand <hmbrand@cpan.org>
+
+=back
 
 =head1 COPYRIGHT AND LICENSE
 
