@@ -13,7 +13,7 @@ use strict;
 use warnings;
 package main;
 BEGIN {
-  $main::VERSION = '0.017';
+  $main::VERSION = '0.018';
 } # dzil needs this
 # NAME: metabase-profile
 # ABSTRACT: create a metabase profile
@@ -81,7 +81,17 @@ print {$fh} JSON->new->ascii->pretty->encode([
 close $fh;
 chmod 0600, $output;
 
-__END__
+
+
+=pod
+
+=head1 NAME
+
+main - create a metabase profile
+
+=head1 VERSION
+
+version 0.018
 
 =head1 SYNOPSIS
 
@@ -119,5 +129,35 @@ client program. You may wish to copy it across computers if you would like
 to be identified consistently when submitting reports from different
 locations.
 
+=head1 AUTHORS
+
+=over 4
+
+=item *
+
+David Golden <dagolden@cpan.org>
+
+=item *
+
+Ricardo Signes <rjbs@cpan.org>
+
+=item *
+
+H.Merijn Brand <hmbrand@cpan.org>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2010 by David Golden.
+
+This is free software, licensed under:
+
+  The Apache License, Version 2.0, January 2004
+
 =cut
+
+
+__END__
+
 

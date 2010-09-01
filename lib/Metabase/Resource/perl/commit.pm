@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::Resource::perl::commit;
 BEGIN {
-  $Metabase::Resource::perl::commit::VERSION = '0.017';
+  $Metabase::Resource::perl::commit::VERSION = '0.018';
 }
 # ABSTRACT: class for Metabase resources about perl commits
 
@@ -63,7 +63,7 @@ Metabase::Resource::perl::commit - class for Metabase resources about perl commi
 
 =head1 VERSION
 
-version 0.017
+version 0.018
 
 =head1 SYNOPSIS
 

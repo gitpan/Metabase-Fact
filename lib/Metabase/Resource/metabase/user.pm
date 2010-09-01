@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::Resource::metabase::user;
 BEGIN {
-  $Metabase::Resource::metabase::user::VERSION = '0.017';
+  $Metabase::Resource::metabase::user::VERSION = '0.018';
 }
 # ABSTRACT: class for Metabase user profiles
 
@@ -49,7 +49,7 @@ Metabase::Resource::metabase::user - class for Metabase user profiles
 
 =head1 VERSION
 
-version 0.017
+version 0.018
 
 =head1 SYNOPSIS
 

@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::Fact;
 BEGIN {
-  $Metabase::Fact::VERSION = '0.017';
+  $Metabase::Fact::VERSION = '0.018';
 }
 # ABSTRACT: base class for Metabase Facts
 
@@ -315,7 +315,8 @@ sub as_json {
 
 sub from_json {
   my ($class, $string) = @_;
-  my $struct = eval { JSON->new->ascii->decode( $string ) };
+  my $struct = eval { JSON->new->ascii->decode( $string ) }
+    or Carp::confess "Error decoding JSON:\n$@";
   return $class->from_struct( $struct );
 }
 
@@ -414,7 +415,7 @@ Metabase::Fact - base class for Metabase Facts
 
 =head1 VERSION
 
-version 0.017
+version 0.018
 
 =head1 SYNOPSIS
 

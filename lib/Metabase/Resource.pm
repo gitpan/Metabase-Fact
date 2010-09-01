@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::Resource;
 BEGIN {
-  $Metabase::Resource::VERSION = '0.017';
+  $Metabase::Resource::VERSION = '0.018';
 }
 # ABSTRACT: factory class for Metabase resource descriptors
 
@@ -133,7 +133,7 @@ Metabase::Resource - factory class for Metabase resource descriptors
 
 =head1 VERSION
 
-version 0.017
+version 0.018
 
 =head1 SYNOPSIS
 

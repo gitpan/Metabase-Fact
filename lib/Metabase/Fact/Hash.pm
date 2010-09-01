@@ -12,7 +12,7 @@ use strict;
 use warnings;
 package Metabase::Fact::Hash;
 BEGIN {
-  $Metabase::Fact::Hash::VERSION = '0.017';
+  $Metabase::Fact::Hash::VERSION = '0.018';
 }
 # ABSTRACT: fact subtype for simple hashes
 
@@ -62,7 +62,7 @@ Metabase::Fact::Hash - fact subtype for simple hashes
 
 =head1 VERSION
 
-version 0.017
+version 0.018
 
 =head1 SYNOPSIS
 
