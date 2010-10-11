@@ -1,18 +1,18 @@
-# 
+#
 # This file is part of Metabase-Fact
-# 
+#
 # This software is Copyright (c) 2010 by David Golden.
-# 
+#
 # This is free software, licensed under:
-# 
+#
 #   The Apache License, Version 2.0, January 2004
-# 
+#
 use 5.006;
 use strict;
 use warnings;
 package Metabase::Fact::Hash;
 BEGIN {
-  $Metabase::Fact::Hash::VERSION = '0.018';
+  $Metabase::Fact::Hash::VERSION = '0.019';
 }
 # ABSTRACT: fact subtype for simple hashes
 
@@ -62,7 +62,7 @@ Metabase::Fact::Hash - fact subtype for simple hashes
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 SYNOPSIS
 

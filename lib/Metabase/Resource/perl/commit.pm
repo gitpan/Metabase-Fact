@@ -1,18 +1,18 @@
-# 
+#
 # This file is part of Metabase-Fact
-# 
+#
 # This software is Copyright (c) 2010 by David Golden.
-# 
+#
 # This is free software, licensed under:
-# 
+#
 #   The Apache License, Version 2.0, January 2004
-# 
+#
 use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource::perl::commit;
 BEGIN {
-  $Metabase::Resource::perl::commit::VERSION = '0.018';
+  $Metabase::Resource::perl::commit::VERSION = '0.019';
 }
 # ABSTRACT: class for Metabase resources about perl commits
 
@@ -63,7 +63,7 @@ Metabase::Resource::perl::commit - class for Metabase resources about perl commi
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 SYNOPSIS
 

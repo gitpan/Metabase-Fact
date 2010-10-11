@@ -1,18 +1,18 @@
-# 
+#
 # This file is part of Metabase-Fact
-# 
+#
 # This software is Copyright (c) 2010 by David Golden.
-# 
+#
 # This is free software, licensed under:
-# 
+#
 #   The Apache License, Version 2.0, January 2004
-# 
+#
 use 5.006;
 use strict;
 use warnings;
 package Metabase::User::Profile;
 BEGIN {
-  $Metabase::User::Profile::VERSION = '0.018';
+  $Metabase::User::Profile::VERSION = '0.019';
 }
 # ABSTRACT: Metabase report class for user-related facts
 
@@ -86,7 +86,7 @@ Metabase::User::Profile - Metabase report class for user-related facts
 
 =head1 VERSION
 
-version 0.018
+version 0.019
 
 =head1 SYNOPSIS
 
