@@ -1,20 +1,8 @@
-#
-# This file is part of Metabase-Fact
-#
-# This software is Copyright (c) 2010 by David Golden.
-#
-# This is free software, licensed under:
-#
-#   The Apache License, Version 2.0, January 2004
-#
 use 5.006;
 use strict;
 use warnings;
 package Metabase::Report;
-BEGIN {
-  $Metabase::Report::VERSION = '0.019';
-}
-# ABSTRACT: a base class for collections of Metabase facts
+our $VERSION = '0.020'; # VERSION
 
 use Carp ();
 use JSON 2 ();
@@ -219,6 +207,8 @@ sub load_fact_classes {
 
 1;
 
+# ABSTRACT: a base class for collections of Metabase facts
+
 
 
 =pod
@@ -229,7 +219,7 @@ Metabase::Report - a base class for collections of Metabase facts
 
 =head1 VERSION
 
-version 0.019
+version 0.020
 
 =head1 SYNOPSIS
 
@@ -371,7 +361,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2010 by David Golden.
+This software is Copyright (c) 2011 by David Golden.
 
 This is free software, licensed under:
 

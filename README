@@ -2,7 +2,7 @@ NAME
     Metabase::Fact - base class for Metabase Facts
 
 VERSION
-    version 0.019
+    version 0.020
 
 SYNOPSIS
       # defining the fact class
@@ -315,6 +315,10 @@ ABSTRACT METHODS
         }
       }
 
+    Field names should be valid perl identifiers, consisting of alphanumeric
+    characters or underscores. Hyphens and periods are allowed, but are not
+    recommended.
+
   content_metadata_types
     optional
 
@@ -393,6 +397,22 @@ BUGS
     When submitting a bug or request, please include a test-file or a patch
     to an existing test-file that illustrates the bug or desired feature.
 
+SUPPORT
+  Bugs / Feature Requests
+    Please report any bugs or feature requests by email to
+    "bug-metabase-fact at rt.cpan.org", or through the web interface at
+    <http://rt.cpan.org/Public/Dist/Display.html?Name=Metabase-Fact>. You
+    will be automatically notified of any progress on the request by the
+    system.
+
+  Source Code
+    This is open source software. The code repository is available for
+    public review and contribution under the terms of the license.
+
+    <http://github.com/dagolden/metabase-fact>
+
+      git clone http://github.com/dagolden/metabase-fact
+
 AUTHORS
     *   David Golden <dagolden@cpan.org>
 
@@ -401,7 +421,7 @@ AUTHORS
     *   H.Merijn Brand <hmbrand@cpan.org>
 
 COPYRIGHT AND LICENSE
-    This software is Copyright (c) 2010 by David Golden.
+    This software is Copyright (c) 2011 by David Golden.
 
     This is free software, licensed under:
 

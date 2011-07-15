@@ -1,20 +1,8 @@
-#
-# This file is part of Metabase-Fact
-#
-# This software is Copyright (c) 2010 by David Golden.
-#
-# This is free software, licensed under:
-#
-#   The Apache License, Version 2.0, January 2004
-#
 use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource;
-BEGIN {
-  $Metabase::Resource::VERSION = '0.019';
-}
-# ABSTRACT: factory class for Metabase resource descriptors
+our $VERSION = '0.020'; # VERSION
 
 use Carp ();
 
@@ -35,7 +23,7 @@ sub _obj_eq {
 
 sub _load {
   my ($class,$subclass) = @_;
-  eval "require $subclass; 1"
+  eval "require $subclass; 1" ## no critic
     or Carp::confess("Could not load '$subclass': $@");
 }
 
@@ -47,7 +35,7 @@ sub _add {
   $self->_types->{$name} = $type;
   my $method = ref($self) . "::$name";
   if ( ! $installed{$method} ) {
-    no strict 'refs';
+    no strict 'refs'; ## no critic
     *{$method} = sub { return $_[0]->{_cache}{$name} };
     $installed{$method}++;
   }
@@ -123,6 +111,8 @@ sub validate {
 
 1;
 
+# ABSTRACT: factory class for Metabase resource descriptors
+
 
 
 =pod
@@ -133,7 +123,7 @@ Metabase::Resource - factory class for Metabase resource descriptors
 
 =head1 VERSION
 
-version 0.019
+version 0.020
 
 =head1 SYNOPSIS
 
@@ -257,6 +247,10 @@ resource like 'metabase:user:ec2726a4-070c-11df-a2e0-0018f34ec37c':
     }
   }
 
+Field names should be valid perl identifiers, consisting of alphanumeric
+characters or underscores.  Hyphens and periods are allowed, but are not
+recommended.
+
 =head2 metadata_types
 
   my $typemap = $resource->metadata_types;
@@ -317,7 +311,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2010 by David Golden.
+This software is Copyright (c) 2011 by David Golden.
 
 This is free software, licensed under:
 

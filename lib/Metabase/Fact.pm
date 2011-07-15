@@ -1,20 +1,8 @@
-#
-# This file is part of Metabase-Fact
-#
-# This software is Copyright (c) 2010 by David Golden.
-#
-# This is free software, licensed under:
-#
-#   The Apache License, Version 2.0, January 2004
-#
 use 5.006;
 use strict;
 use warnings;
 package Metabase::Fact;
-BEGIN {
-  $Metabase::Fact::VERSION = '0.019';
-}
-# ABSTRACT: base class for Metabase Facts
+our $VERSION = '0.020'; # VERSION
 
 use Carp ();
 use Data::GUID guid_string => { -as => '_guid' };
@@ -240,7 +228,7 @@ sub _load_fact_class {
     Carp::confess "Can't load undef as a module";
   }
   unless ( $fact_class->can('type') ) {
-    eval "require $fact_class; 1"
+    eval "require $fact_class; 1" ## no critic
       or Carp::confess "Could not load fact class $fact_class\: $@";
   }
   return 1;
@@ -371,7 +359,7 @@ sub class_from_type {
 
 # XXX should this be a fatal abstract?  Forcing classes to be
 # explicit about schema versions? Annoying, but correct -- dagolden, 2009-03-31
-sub default_schema_version() { 1 }
+sub default_schema_version { 1 }
 
 #--------------------------------------------------------------------------#
 # abstract methods -- mostly fatal
@@ -405,8 +393,11 @@ sub validate_content {
 
 1;
 
+# ABSTRACT: base class for Metabase Facts
 
 
+
+__END__
 =pod
 
 =head1 NAME
@@ -415,7 +406,7 @@ Metabase::Fact - base class for Metabase Facts
 
 =head1 VERSION
 
-version 0.019
+version 0.020
 
 =head1 SYNOPSIS
 
@@ -762,6 +753,10 @@ Here is a hypothetical example of C<content_metadata> for an image fact:
     }
   }
 
+Field names should be valid perl identifiers, consisting of alphanumeric
+characters or underscores.  Hyphens and periods are allowed, but are not
+recommended.
+
 =head2 content_metadata_types
 
 B<optional>
@@ -843,6 +838,25 @@ L<http://rt.cpan.org/Dist/Display.html?Queue=Metabase-Fact>
 When submitting a bug or request, please include a test-file or a patch to an
 existing test-file that illustrates the bug or desired feature.
 
+=for :stopwords cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee diff irc mailto metadata placeholders
+
+=head1 SUPPORT
+
+=head2 Bugs / Feature Requests
+
+Please report any bugs or feature requests by email to C<bug-metabase-fact at rt.cpan.org>, or through
+the web interface at L<http://rt.cpan.org/Public/Dist/Display.html?Name=Metabase-Fact>. You will be automatically notified of any
+progress on the request by the system.
+
+=head2 Source Code
+
+This is open source software.  The code repository is available for
+public review and contribution under the terms of the license.
+
+L<http://github.com/dagolden/metabase-fact>
+
+  git clone http://github.com/dagolden/metabase-fact
+
 =head1 AUTHORS
 
 =over 4
@@ -863,16 +877,11 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2010 by David Golden.
+This software is Copyright (c) 2011 by David Golden.
 
 This is free software, licensed under:
 
   The Apache License, Version 2.0, January 2004
 
 =cut
-
-
-__END__
-
-
 
