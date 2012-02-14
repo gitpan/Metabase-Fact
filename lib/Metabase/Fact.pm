@@ -2,7 +2,7 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Fact;
-our $VERSION = '0.020'; # VERSION
+our $VERSION = '0.021'; # VERSION
 
 use Carp ();
 use Data::GUID guid_string => { -as => '_guid' };
@@ -54,7 +54,11 @@ sub __validate_guid {
 sub validate_resource {
   my ($self, $uri) = @_;
   # Metabase::Resource->new dies if invalid
-  return Metabase::Resource->new($uri);
+  my $obj = Metabase::Resource->new($uri);
+  if ( ! (ref($obj) && $obj->isa("Metabase::Resource") ) ) {
+    Carp::confess("Could not validate '$uri' as a Metabase::Resource");
+  }
+  return $obj;
 }
 
 sub new {
@@ -83,7 +87,7 @@ sub new {
   return $self;
 }
 
-sub _zulu_datetime { 
+sub _zulu_datetime {
   my ($y,$mo,$d,$h,$mi,$s) = (gmtime)[reverse 0 .. 5];
   return sprintf("%4d-%02d-%02dT%02d:%02d:%02dZ",1900+$y,1+$mo,$d,$h,$mi,$s);
 }
@@ -119,7 +123,7 @@ sub _init_guts {
   my $self = bless {}, $class;
 
   $self->{content} = $args->{content};
-  
+
   my $meta = $self->{metadata} = { core => {} };
   $meta->{core}{guid}           = $class->__validate_guid($args->{guid});
   $meta->{core}{creation_time}  = $args->{creation_time} || _zulu_datetime();
@@ -159,7 +163,7 @@ sub set_creator {
 
   # validate $uri
   my $obj = Metabase::Resource->new($uri);
-  unless ( $obj->scheme eq 'metabase' && $obj->subtype eq 'user' ) {
+  unless ( $obj->type eq 'Metabase-Resource-metabase-user' ) {
     Carp::confess(
       "creator must be a Metabase User Profile resource URI of\n" .
       "the form 'metabase:user:XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'"
@@ -191,7 +195,7 @@ sub set_valid {
 
 sub core_metadata {
   my $self = shift;
-  $self->{metadata}{core};
+  return { %{$self->{metadata}{core}} };
 }
 
 sub core_metadata_types {
@@ -210,7 +214,7 @@ sub core_metadata_types {
 sub resource_metadata {
   my $self = shift;
   $self->{metadata}{resource} ||= $self->resource->metadata;
-  return $self->{metadata}{resource};
+  return { %{$self->{metadata}{resource}} };
 }
 
 sub resource_metadata_types {
@@ -222,10 +226,16 @@ sub resource_metadata_types {
 
 # Class might not be in its own file -- check if method can resolve
 # or else try to load it
+my $id_re = qr/[_a-z]+/i;
+my $class_re = qr/^$id_re(?:::$id_re)*$/;
+
 sub _load_fact_class {
   my ($class, $fact_class) = @_;
   unless ( defined $fact_class ) {
     Carp::confess "Can't load undef as a module";
+  }
+  unless ( $fact_class =~ $class_re ) {
+    Carp::confess "'$fact_class' does not look like a class name";
   }
   unless ( $fact_class->can('type') ) {
     eval "require $fact_class; 1" ## no critic
@@ -406,7 +416,7 @@ Metabase::Fact - base class for Metabase Facts
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 SYNOPSIS
 
@@ -443,7 +453,7 @@ and a C<creator> attribute.
 
 The C<resource> attribute must be in a URI format that can be validated via a
 L<Metabase::Resource> subclass.  The C<content> attribute is an opaque scalar
-with subclass-specific meaning.  The C<creator> attribute is a URI with a 
+with subclass-specific meaning.  The C<creator> attribute is a URI with a
 "metabase:user" scheme and type (see L<Metabase::Resource::metabase>).
 
 Facts have three sets of metadata associate with them.  Metadata are generally
@@ -475,7 +485,7 @@ C<resource_metadata> and C<content_metadata>.
 
 Each of the three sets also has an accessor that returns a hashref with a data
 type for each possible element in the set: C<core_metadata_types>,
-C<resource_metadata_types> and C<content_metadata_types>.  
+C<resource_metadata_types> and C<content_metadata_types>.
 
 Data types are loosely based on L<Data::RX>.  For example:
 
@@ -516,7 +526,7 @@ accessor returns a Metabase::Resource subclass.
 
 A L<Metabase::User::Profile> URI that indicates the creator of the Fact.  If
 not set during Fact creation, it will be set by the Metabase when a Fact is
-submitted based on the submitter's Profile.  The C<set_creator> mutator may be
+submitted based on the submitter Profile.  The C<set_creator> mutator may be
 called to set C<creator>, but only if it is not previously set.  The associated
 accessor returns a Metabase::Resource subclass or C<undef> if the creator
 has not been set.
@@ -544,8 +554,8 @@ versions of the class have been released since the object was created.
 
 =head3 creation_time
 
-Fact creation time in UTC expressed in extended ISO 8601 format with a 
-"Z" (Zulu) suffix.  For example:  
+Fact creation time in UTC expressed in extended ISO 8601 format with a
+"Z" (Zulu) suffix.  For example:
 
   2010-01-10T12:34:56Z
 
@@ -611,7 +621,7 @@ Schema version numbers should be monotonically-increasing integers.  The
 default schema version is used to set an objects schema_version attribution
 on creation.
 
-=head1 PERSISTANCE METHODS
+=head1 PERSISTENCE METHODS
 
 The following methods are implemented by Metabase::Fact and subclasses
 generally should not need to override them.
@@ -697,7 +707,7 @@ This method sets the C<valid> core metadata to a boolean value.
 
 This method sets the C<update_time> core metadata for the core metadata for the
 fact to the current time in ISO 8601 UTC format with a trailing "Z" (Zulu)
-suffic.
+suffice.
 
 =head1 ABSTRACT METHODS
 
@@ -740,7 +750,7 @@ B<optional>
 If provided, this method MUST return a hash reference with content-specific
 indexing metadata. The key MUST be the name of the field for indexing and
 SHOULD provide dimensions to differentiate one set of content from another.
-Values MUST be simple scalars, not references. 
+Values MUST be simple scalars, not references.
 
 Here is a hypothetical example of C<content_metadata> for an image fact:
 
@@ -777,7 +787,7 @@ following:
   '//num' -- indicates a value that should be compared numerically
   '//bool' -- indicates a boolean value where "1" is true and "0" is false
 
-Here is a hypothetical example of C<content_metadata_types> for an image fact: 
+Here is a hypothetical example of C<content_metadata_types> for an image fact:
 
   sub content_metadata_types {
     return {
@@ -844,18 +854,18 @@ existing test-file that illustrates the bug or desired feature.
 
 =head2 Bugs / Feature Requests
 
-Please report any bugs or feature requests by email to C<bug-metabase-fact at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/Public/Dist/Display.html?Name=Metabase-Fact>. You will be automatically notified of any
-progress on the request by the system.
+Please report any bugs or feature requests through the issue tracker
+at L<http://rt.cpan.org/Public/Dist/Display.html?Name=Metabase-Fact>.
+You will be notified automatically of any progress on your issue.
 
 =head2 Source Code
 
 This is open source software.  The code repository is available for
 public review and contribution under the terms of the license.
 
-L<http://github.com/dagolden/metabase-fact>
+L<https://github.com/dagolden/metabase-fact>
 
-  git clone http://github.com/dagolden/metabase-fact
+  git clone https://github.com/dagolden/metabase-fact.git
 
 =head1 AUTHORS
 
@@ -877,7 +887,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2011 by David Golden.
+This software is Copyright (c) 2012 by David Golden.
 
 This is free software, licensed under:
 

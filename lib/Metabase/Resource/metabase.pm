@@ -2,7 +2,7 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource::metabase;
-our $VERSION = '0.020'; # VERSION
+our $VERSION = '0.021'; # VERSION
 
 use Carp ();
 
@@ -20,21 +20,14 @@ sub _validate_guid {
   return $string;
 }
 
-sub _init {
-  my ($self) = @_;
-  my $scheme = $self->scheme;
+sub _extract_type {
+  my ($self, $resource) = @_;
 
-  # determine subtype
-  my ($subtype) = $self =~ m{\A$scheme:([^:]+)};
-  Carp::confess("could not determine URI subtype from '$self'\n")
-    unless defined $subtype && length $subtype;
-  $self->_add( subtype => '//str' =>  $subtype);
-
-  # rebless into subclass and finish initialization
-  my $subclass = __PACKAGE__ . "::$subtype";
-  $self->_load($subclass);
-  bless $self, $subclass;
-  return $self->_init;
+  # determine type
+  my ($type) = $resource =~ m{\Ametabase:([^:]+)};
+  Carp::confess("could not determine URI type from '$resource'\n")
+    unless defined $type && length $type;
+  return __PACKAGE__ . "::$type";
 }
 
 1;
@@ -51,7 +44,7 @@ Metabase::Resource::metabase - class for Metabase resources
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 SYNOPSIS
 
@@ -66,7 +59,7 @@ version 0.020
 
 Generates resource metadata for resources of the scheme 'metabase'.
 
-The L<Metabase::Resource::metabase> class supports the followng sub-type(s).
+The L<Metabase::Resource::metabase> class supports the following sub-type(s).
 
 =head2 fact 
 
@@ -125,7 +118,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2011 by David Golden.
+This software is Copyright (c) 2012 by David Golden.
 
 This is free software, licensed under:
 

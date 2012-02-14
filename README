@@ -2,7 +2,7 @@ NAME
     Metabase::Fact - base class for Metabase Facts
 
 VERSION
-    version 0.020
+    version 0.021
 
 SYNOPSIS
       # defining the fact class
@@ -100,7 +100,7 @@ ATTRIBUTES
    creator (optional)
     A Metabase::User::Profile URI that indicates the creator of the Fact. If
     not set during Fact creation, it will be set by the Metabase when a Fact
-    is submitted based on the submitter's Profile. The "set_creator" mutator
+    is submitted based on the submitter Profile. The "set_creator" mutator
     may be called to set "creator", but only if it is not previously set.
     The associated accessor returns a Metabase::Resource subclass or "undef"
     if the creator has not been set.
@@ -186,7 +186,7 @@ CLASS METHODS
     default schema version is used to set an objects schema_version
     attribution on creation.
 
-PERSISTANCE METHODS
+PERSISTENCE METHODS
     The following methods are implemented by Metabase::Fact and subclasses
     generally should not need to override them.
 
@@ -260,7 +260,7 @@ OBJECT METHODS
 
     This method sets the "update_time" core metadata for the core metadata
     for the fact to the current time in ISO 8601 UTC format with a trailing
-    "Z" (Zulu) suffic.
+    "Z" (Zulu) suffice.
 
 ABSTRACT METHODS
     Methods marked as required must be implemented by a Fact subclass. (The
@@ -399,19 +399,17 @@ BUGS
 
 SUPPORT
   Bugs / Feature Requests
-    Please report any bugs or feature requests by email to
-    "bug-metabase-fact at rt.cpan.org", or through the web interface at
+    Please report any bugs or feature requests through the issue tracker at
     <http://rt.cpan.org/Public/Dist/Display.html?Name=Metabase-Fact>. You
-    will be automatically notified of any progress on the request by the
-    system.
+    will be notified automatically of any progress on your issue.
 
   Source Code
     This is open source software. The code repository is available for
     public review and contribution under the terms of the license.
 
-    <http://github.com/dagolden/metabase-fact>
+    <https://github.com/dagolden/metabase-fact>
 
-      git clone http://github.com/dagolden/metabase-fact
+      git clone https://github.com/dagolden/metabase-fact.git
 
 AUTHORS
     *   David Golden <dagolden@cpan.org>
@@ -421,7 +419,7 @@ AUTHORS
     *   H.Merijn Brand <hmbrand@cpan.org>
 
 COPYRIGHT AND LICENSE
-    This software is Copyright (c) 2011 by David Golden.
+    This software is Copyright (c) 2012 by David Golden.
 
     This is free software, licensed under:
 

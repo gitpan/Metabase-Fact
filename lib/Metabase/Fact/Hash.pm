@@ -2,7 +2,7 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Fact::Hash;
-our $VERSION = '0.020'; # VERSION
+our $VERSION = '0.021'; # VERSION
 
 use Carp ();
 use JSON 2 ();
@@ -52,7 +52,7 @@ Metabase::Fact::Hash - fact subtype for simple hashes
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 SYNOPSIS
 
@@ -160,7 +160,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2011 by David Golden.
+This software is Copyright (c) 2012 by David Golden.
 
 This is free software, licensed under:
 

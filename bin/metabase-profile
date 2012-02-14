@@ -2,9 +2,10 @@
 use 5.006;
 use strict;
 use warnings;
-package main; # dzil needs this
-# NAME: metabase-profile
+package metabase_profile; # dzil needs this
+# PODNAME: metabase-profile
 # ABSTRACT: create a metabase profile
+our $VERSION = '0.021'; # VERSION
 
 use Getopt::Long;
 use JSON 2;
@@ -75,11 +76,11 @@ chmod 0600, $output;
 
 =head1 NAME
 
-main - create a metabase profile
+metabase-profile - create a metabase profile
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 SYNOPSIS
 
@@ -137,7 +138,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2011 by David Golden.
+This software is Copyright (c) 2012 by David Golden.
 
 This is free software, licensed under:
 

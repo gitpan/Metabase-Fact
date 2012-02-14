@@ -2,29 +2,19 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource::cpan;
-our $VERSION = '0.020'; # VERSION
+our $VERSION = '0.021'; # VERSION
 
 use Carp ();
-use CPAN::DistnameInfo ();
 
 use Metabase::Resource;
 our @ISA = qw/Metabase::Resource/;
 
-sub _init {
-  my ($self) = @_;
-  my $scheme = $self->scheme;
-
-  # determine subtype
-  my ($subtype) = $self =~ m{\A$scheme:///([^/]+)/};
-  Carp::confess("could not determine URI subtype from '$self'\n")
-    unless defined $subtype && length $subtype;
-  $self->_add( subtype => '//str' =>  $subtype);
-
-  # rebless into subclass and finish initialization
-  my $subclass = __PACKAGE__ . "::$subtype";
-  $self->_load($subclass);
-  bless $self, $subclass;
-  return $self->_init;
+sub _extract_type {
+  my ($self, $resource) = @_;
+  my ($type) = $resource =~ m{\Acpan:///([^/]+)/};
+  Carp::confess("could not determine Metabase::Resource type from '$resource'\n")
+    unless defined $type && length $type;
+  return __PACKAGE__ . "::$type";
 }
 
 1;
@@ -41,7 +31,7 @@ Metabase::Resource::cpan - class for Metabase resources
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 SYNOPSIS
 
@@ -56,7 +46,7 @@ version 0.020
 
 Generates resource metadata for resources of the scheme 'cpan'.
 
-The L<Metabase::Resource::cpan> class supports the followng sub-type(s).
+The L<Metabase::Resource::cpan> class supports the following sub-type(s).
 
 =head2 distfile
 
@@ -103,7 +93,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2011 by David Golden.
+This software is Copyright (c) 2012 by David Golden.
 
 This is free software, licensed under:
 

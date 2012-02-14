@@ -2,7 +2,7 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::User::EmailAddress;
-our $VERSION = '0.020'; # VERSION
+our $VERSION = '0.021'; # VERSION
 
 use Metabase::Fact::String;
 our @ISA = qw/Metabase::Fact::String/;
@@ -21,7 +21,7 @@ Metabase::User::EmailAddress - Metabase fact for user email address
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 SYNOPSIS
 
@@ -67,7 +67,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2011 by David Golden.
+This software is Copyright (c) 2012 by David Golden.
 
 This is free software, licensed under:
 

@@ -2,32 +2,25 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource::perl;
-our $VERSION = '0.020'; # VERSION
+our $VERSION = '0.021'; # VERSION
 
 use Carp ();
 
 use Metabase::Resource;
 our @ISA = qw/Metabase::Resource/;
 
-sub _init {
-  my ($self) = @_;
-  my $scheme = $self->scheme;
+sub _extract_type {
+  my ($self, $resource) = @_;
 
-  # determine subtype
-  # Possible sub-types could be:
+  # determine type
+  # Possible types could be:
   #  - commit
   #  - tag -- not implemented
   #  - tarball -- not implemented
-  my ($subtype) = $self =~ m{\A$scheme:///([^/]+)/};
-  Carp::confess("could not determine URI subtype from '$self'\n")
-    unless defined $subtype && length $subtype;
-  $self->_add( subtype => '//str' =>  $subtype);
-
-  # rebless into subclass and finish initialization
-  my $subclass = __PACKAGE__ . "::$subtype";
-  $self->_load($subclass);
-  bless $self, $subclass;
-  return $self->_init;
+  my ($type) = $resource =~ m{\Aperl:///([^/]+)/};
+  Carp::confess("could not determine Metabase::Resource type from '$resource'\n")
+    unless defined $type && length $type;
+  return __PACKAGE__ . "::$type";
 }
 
 1;
@@ -45,7 +38,7 @@ Metabase::Resource::perl - class for Metabase resources under the perl scheme
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 SYNOPSIS
 
@@ -60,7 +53,7 @@ version 0.020
 
 Generates resource metadata for resources of the scheme 'perl'.
 
-The L<Metabase::Resource::perl> class supports the followng sub-type(s).
+The L<Metabase::Resource::perl> class supports the following sub-type(s).
 
 =head2 commit
 
@@ -104,7 +97,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2011 by David Golden.
+This software is Copyright (c) 2012 by David Golden.
 
 This is free software, licensed under:
 

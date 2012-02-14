@@ -2,7 +2,7 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource::cpan::distfile;
-our $VERSION = '0.020'; # VERSION
+our $VERSION = '0.021'; # VERSION
 
 use Carp ();
 use CPAN::DistnameInfo ();
@@ -10,25 +10,26 @@ use CPAN::DistnameInfo ();
 use Metabase::Resource::cpan;
 our @ISA = qw/Metabase::Resource::cpan/;
 
-my %metadata_types = (
-  cpan_id       => '//str',
-  dist_file     => '//str',
-  dist_name     => '//str',
-  dist_version  => '//str',
-);
+sub _metadata_types {
+  return {
+    cpan_id       => '//str',
+    dist_file     => '//str',
+    dist_name     => '//str',
+    dist_version  => '//str',
+  }
+}
 
 sub _init {
   my ($self) = @_;
-  my ($scheme, $subtype) = ($self->scheme, $self->subtype);
 
   # determine subtype
-  my ($string) = $self =~ m{\A$scheme:///$subtype/(.+)\z};
+  my ($string) = $self =~ m{\Acpan:///distfile/(.+)\z};
   Carp::confess("could not determine distfile from '$self'\n")
     unless defined $string && length $string;
 
   my $data = $self->_validate_distfile($string);
   for my $k ( keys %$data ) {
-    $self->_add( $k => $metadata_types{$k} =>  $data->{$k} );
+    $self->_add( $k => $data->{$k} );
   }
   return $self;
 }
@@ -87,7 +88,7 @@ Metabase::Resource::cpan::distfile - class for Metabase resources
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 SYNOPSIS
 
@@ -145,7 +146,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2011 by David Golden.
+This software is Copyright (c) 2012 by David Golden.
 
 This is free software, licensed under:
 

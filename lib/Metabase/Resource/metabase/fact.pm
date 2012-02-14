@@ -2,20 +2,25 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource::metabase::fact;
-our $VERSION = '0.020'; # VERSION
+our $VERSION = '0.021'; # VERSION
 
 use Carp ();
 
 use Metabase::Resource::metabase;
 our @ISA = qw/Metabase::Resource::metabase/;
 
+sub _metadata_types {
+  return {
+    guid => '//str',
+  };
+}
+
 sub _init {
   my ($self) = @_;
-  my ($scheme, $subtype) = ($self->scheme, $self->subtype);
-  my ($guid) = $self =~ m{\A$scheme:$subtype:(.+)\z};
-  Carp::confess("could not determine URI subtype from '$self'\n")
+  my ($guid) = $self =~ m{\Ametabase:[^:]+:(.+)\z};
+  Carp::confess("could not determine guid from '$self'\n")
     unless defined $guid && length $guid;
-  $self->_add( guid => '//str' =>  $guid);
+  $self->_add( guid => $guid);
   return $self;
 }
 
@@ -39,7 +44,7 @@ Metabase::Resource::metabase::fact - class for Metabase facts
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 SYNOPSIS
 
@@ -91,7 +96,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2011 by David Golden.
+This software is Copyright (c) 2012 by David Golden.
 
 This is free software, licensed under:
 

@@ -5,6 +5,7 @@ META.json
 META.yml
 Makefile.PL
 README
+README.PATCHING
 README.hacking
 bin/metabase-profile
 dist.ini
@@ -39,6 +40,7 @@ t/resource/cpan.t
 t/resource/perl.t
 t/user/profile.t
 xt/author/critic.t
+xt/author/pod-spell.t
 xt/release/distmeta.t
 xt/release/pod-coverage.t
 xt/release/pod-syntax.t

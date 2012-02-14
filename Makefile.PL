@@ -9,37 +9,39 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'base class for Metabase Facts',
-  'AUTHOR' => 'David Golden <dagolden@cpan.org>, Ricardo Signes <rjbs@cpan.org>, H.Merijn Brand <hmbrand@cpan.org>',
-  'BUILD_REQUIRES' => {
-    'Cwd' => '0',
-    'File::Find' => '0',
-    'File::Spec' => '0',
-    'File::Temp' => '0.20',
-    'Test::Exception' => '0',
-    'Test::More' => '0.88'
+  "ABSTRACT" => "base class for Metabase Facts",
+  "AUTHOR" => "David Golden <dagolden\@cpan.org>, Ricardo Signes <rjbs\@cpan.org>, H.Merijn Brand <hmbrand\@cpan.org>",
+  "BUILD_REQUIRES" => {
+    "Cwd" => 0,
+    "File::Find" => 0,
+    "File::Spec" => 0,
+    "File::Temp" => "0.20",
+    "Test::Exception" => 0,
+    "Test::More" => "0.88"
   },
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.30'
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'DISTNAME' => 'Metabase-Fact',
-  'EXE_FILES' => [
-    'bin/metabase-profile'
+  "DISTNAME" => "Metabase-Fact",
+  "EXE_FILES" => [
+    "bin/metabase-profile"
   ],
-  'LICENSE' => 'apache',
-  'NAME' => 'Metabase::Fact',
-  'PREREQ_PM' => {
-    'CPAN::DistnameInfo' => '0',
-    'Carp' => '0',
-    'Data::GUID' => '0',
-    'Getopt::Long' => '0',
-    'JSON' => '2',
-    'Pod::Usage' => '0',
-    'overload' => '0'
+  "LICENSE" => "apache",
+  "NAME" => "Metabase::Fact",
+  "PREREQ_PM" => {
+    "CPAN::DistnameInfo" => 0,
+    "Carp" => 0,
+    "Data::GUID" => 0,
+    "Getopt::Long" => 0,
+    "JSON" => 2,
+    "Pod::Usage" => 0,
+    "overload" => 0,
+    "strict" => 0,
+    "warnings" => 0
   },
-  'VERSION' => '0.020',
-  'test' => {
-    'TESTS' => 't/*.t t/fact/*.t t/report/*.t t/resource/*.t t/user/*.t'
+  "VERSION" => "0.021",
+  "test" => {
+    "TESTS" => "t/*.t t/fact/*.t t/report/*.t t/resource/*.t t/user/*.t"
   }
 );
 

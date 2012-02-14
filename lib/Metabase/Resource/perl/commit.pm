@@ -2,22 +2,23 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource::perl::commit;
-our $VERSION = '0.020'; # VERSION
+our $VERSION = '0.021'; # VERSION
 
 use Carp ();
 
 use Metabase::Resource::perl;
 our @ISA = qw/Metabase::Resource::perl/;
 
-my %metadata_types = (
-  sha1          => '//str',
-);
+sub _metadata_types {
+  return {
+    sha1          => '//str',
+  };
+}
 
 sub _init {
   my ($self) = @_;
-  my ($scheme, $subtype) = ($self->scheme, $self->subtype);
 
-  my ($string) = $self =~ m{\A$scheme:///$subtype/(.+)\z};
+  my ($string) = $self =~ m{\Aperl:///commit/(.+)\z};
   Carp::confess("could not determine commit from '$self'\n")
     unless defined $string && length $string;
 
@@ -25,7 +26,7 @@ sub _init {
   Carp::confess("illegal commit hash")
     unless $sha1 =~ m/^[a-f0-9]+$/;
 
-  $self->_add( 'sha1' => $metadata_types{sha1} => $sha1 );
+  $self->_add( 'sha1' => $sha1 );
 
   return $self;
 }
@@ -55,7 +56,7 @@ Metabase::Resource::perl::commit - class for Metabase resources about perl commi
 
 =head1 VERSION
 
-version 0.020
+version 0.021
 
 =head1 SYNOPSIS
 
@@ -121,7 +122,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2011 by David Golden.
+This software is Copyright (c) 2012 by David Golden.
 
 This is free software, licensed under:
 
