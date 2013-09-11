@@ -2,7 +2,7 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Fact;
-our $VERSION = '0.021'; # VERSION
+our $VERSION = '0.022'; # VERSION
 
 use Carp ();
 use Data::GUID guid_string => { -as => '_guid' };
@@ -405,10 +405,11 @@ sub validate_content {
 
 # ABSTRACT: base class for Metabase Facts
 
-
-
 __END__
+
 =pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -416,7 +417,7 @@ Metabase::Fact - base class for Metabase Facts
 
 =head1 VERSION
 
-version 0.021
+version 0.022
 
 =head1 SYNOPSIS
 
@@ -848,14 +849,14 @@ L<http://rt.cpan.org/Dist/Display.html?Queue=Metabase-Fact>
 When submitting a bug or request, please include a test-file or a patch to an
 existing test-file that illustrates the bug or desired feature.
 
-=for :stopwords cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee diff irc mailto metadata placeholders
+=for :stopwords cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee diff irc mailto metadata placeholders metacpan
 
 =head1 SUPPORT
 
 =head2 Bugs / Feature Requests
 
 Please report any bugs or feature requests through the issue tracker
-at L<http://rt.cpan.org/Public/Dist/Display.html?Name=Metabase-Fact>.
+at L<https://github.com/dagolden/Metabase-Fact/issues>.
 You will be notified automatically of any progress on your issue.
 
 =head2 Source Code
@@ -863,9 +864,9 @@ You will be notified automatically of any progress on your issue.
 This is open source software.  The code repository is available for
 public review and contribution under the terms of the license.
 
-L<https://github.com/dagolden/metabase-fact>
+L<https://github.com/dagolden/Metabase-Fact>
 
-  git clone https://github.com/dagolden/metabase-fact.git
+  git clone https://github.com/dagolden/Metabase-Fact.git
 
 =head1 AUTHORS
 
@@ -885,13 +886,26 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =back
 
+=head1 CONTRIBUTORS
+
+=over 4
+
+=item *
+
+Nathan Gary Glenn <nglenn@cpan.org>
+
+=item *
+
+Randy Stauner <rwstauner@cpan.org>
+
+=back
+
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2012 by David Golden.
+This software is Copyright (c) 2013 by David Golden.
 
 This is free software, licensed under:
 
   The Apache License, Version 2.0, January 2004
 
 =cut
-

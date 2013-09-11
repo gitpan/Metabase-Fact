@@ -2,7 +2,7 @@ use 5.006;
 use strict;
 use warnings;
 package Metabase::Resource::metabase::user;
-our $VERSION = '0.021'; # VERSION
+our $VERSION = '0.022'; # VERSION
 
 
 use Metabase::Resource::metabase::fact;
@@ -12,9 +12,11 @@ our @ISA = qw/Metabase::Resource::metabase::fact/;
 
 # ABSTRACT: class for Metabase user profiles
 
-
+__END__
 
 =pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -22,7 +24,7 @@ Metabase::Resource::metabase::user - class for Metabase user profiles
 
 =head1 VERSION
 
-version 0.021
+version 0.022
 
 =head1 SYNOPSIS
 
@@ -74,16 +76,10 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2012 by David Golden.
+This software is Copyright (c) 2013 by David Golden.
 
 This is free software, licensed under:
 
   The Apache License, Version 2.0, January 2004
 
 =cut
-
-
-__END__
-
-
-

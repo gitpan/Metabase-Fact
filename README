@@ -2,7 +2,7 @@ NAME
     Metabase::Fact - base class for Metabase Facts
 
 VERSION
-    version 0.021
+    version 0.022
 
 SYNOPSIS
       # defining the fact class
@@ -400,16 +400,16 @@ BUGS
 SUPPORT
   Bugs / Feature Requests
     Please report any bugs or feature requests through the issue tracker at
-    <http://rt.cpan.org/Public/Dist/Display.html?Name=Metabase-Fact>. You
-    will be notified automatically of any progress on your issue.
+    <https://github.com/dagolden/Metabase-Fact/issues>. You will be notified
+    automatically of any progress on your issue.
 
   Source Code
     This is open source software. The code repository is available for
     public review and contribution under the terms of the license.
 
-    <https://github.com/dagolden/metabase-fact>
+    <https://github.com/dagolden/Metabase-Fact>
 
-      git clone https://github.com/dagolden/metabase-fact.git
+      git clone https://github.com/dagolden/Metabase-Fact.git
 
 AUTHORS
     *   David Golden <dagolden@cpan.org>
@@ -418,8 +418,13 @@ AUTHORS
 
     *   H.Merijn Brand <hmbrand@cpan.org>
 
+CONTRIBUTORS
+    *   Nathan Gary Glenn <nglenn@cpan.org>
+
+    *   Randy Stauner <rwstauner@cpan.org>
+
 COPYRIGHT AND LICENSE
-    This software is Copyright (c) 2012 by David Golden.
+    This software is Copyright (c) 2013 by David Golden.
 
     This is free software, licensed under:
 

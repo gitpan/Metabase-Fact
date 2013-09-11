@@ -1,3 +1,4 @@
+CONTRIBUTING
 Changes
 LICENSE
 MANIFEST
@@ -5,9 +6,9 @@ META.json
 META.yml
 Makefile.PL
 README
-README.PATCHING
 README.hacking
 bin/metabase-profile
+cpanfile
 dist.ini
 lib/Metabase/Fact.pm
 lib/Metabase/Fact/Hash.pm
@@ -26,6 +27,7 @@ lib/Metabase/User/FullName.pm
 lib/Metabase/User/Profile.pm
 lib/Metabase/User/Secret.pm
 t/00-compile.t
+t/00-report-prereqs.t
 t/base.t
 t/fact/hash.t
 t/fact/string.t
@@ -42,6 +44,7 @@ t/user/profile.t
 xt/author/critic.t
 xt/author/pod-spell.t
 xt/release/distmeta.t
+xt/release/minimum-version.t
 xt/release/pod-coverage.t
 xt/release/pod-syntax.t
 xt/release/portability.t
