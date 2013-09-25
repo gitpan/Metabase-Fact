@@ -1,33 +1,34 @@
 use 5.006;
 use strict;
 use warnings;
+
 package Metabase::Resource::metabase;
-our $VERSION = '0.022'; # VERSION
+our $VERSION = '0.023'; # VERSION
 
 use Carp ();
 
 use Metabase::Resource;
 our @ISA = qw/Metabase::Resource/;
 
-my $hex = '[0-9a-f]';
+my $hex     = '[0-9a-f]';
 my $guid_re = qr(\A$hex{8}-$hex{4}-$hex{4}-$hex{4}-$hex{12}\z)i;
 
 sub _validate_guid {
-  my ($self, $string) = @_;
-  if ( $string !~ $guid_re ) {
-    Carp::confess("'$string' is not formatted as a GUID string");
-  }
-  return $string;
+    my ( $self, $string ) = @_;
+    if ( $string !~ $guid_re ) {
+        Carp::confess("'$string' is not formatted as a GUID string");
+    }
+    return $string;
 }
 
 sub _extract_type {
-  my ($self, $resource) = @_;
+    my ( $self, $resource ) = @_;
 
-  # determine type
-  my ($type) = $resource =~ m{\Ametabase:([^:]+)};
-  Carp::confess("could not determine URI type from '$resource'\n")
-    unless defined $type && length $type;
-  return __PACKAGE__ . "::$type";
+    # determine type
+    my ($type) = $resource =~ m{\Ametabase:([^:]+)};
+    Carp::confess("could not determine URI type from '$resource'\n")
+      unless defined $type && length $type;
+    return __PACKAGE__ . "::$type";
 }
 
 1;
@@ -46,7 +47,7 @@ Metabase::Resource::metabase - class for Metabase resources
 
 =head1 VERSION
 
-version 0.022
+version 0.023
 
 =head1 SYNOPSIS
 

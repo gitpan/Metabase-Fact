@@ -2,7 +2,7 @@ NAME
     Metabase::Fact - base class for Metabase Facts
 
 VERSION
-    version 0.022
+    version 0.023
 
 SYNOPSIS
       # defining the fact class

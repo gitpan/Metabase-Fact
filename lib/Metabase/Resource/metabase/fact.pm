@@ -1,8 +1,9 @@
 use 5.006;
 use strict;
 use warnings;
+
 package Metabase::Resource::metabase::fact;
-our $VERSION = '0.022'; # VERSION
+our $VERSION = '0.023'; # VERSION
 
 use Carp ();
 
@@ -10,24 +11,22 @@ use Metabase::Resource::metabase;
 our @ISA = qw/Metabase::Resource::metabase/;
 
 sub _metadata_types {
-  return {
-    guid => '//str',
-  };
+    return { guid => '//str', };
 }
 
 sub _init {
-  my ($self) = @_;
-  my ($guid) = $self =~ m{\Ametabase:[^:]+:(.+)\z};
-  Carp::confess("could not determine guid from '$self'\n")
-    unless defined $guid && length $guid;
-  $self->_add( guid => $guid);
-  return $self;
+    my ($self) = @_;
+    my ($guid) = $self =~ m{\Ametabase:[^:]+:(.+)\z};
+    Carp::confess("could not determine guid from '$self'\n")
+      unless defined $guid && length $guid;
+    $self->_add( guid => $guid );
+    return $self;
 }
 
 sub validate {
-  my $self = shift;
-  $self->_validate_guid( $self->guid );
-  return 1;
+    my $self = shift;
+    $self->_validate_guid( $self->guid );
+    return 1;
 }
 
 1;
@@ -46,7 +45,7 @@ Metabase::Resource::metabase::fact - class for Metabase facts
 
 =head1 VERSION
 
-version 0.022
+version 0.023
 
 =head1 SYNOPSIS
 

@@ -1,17 +1,18 @@
 use 5.006;
 use strict;
 use warnings;
+
 package Metabase::User::Secret;
-our $VERSION = '0.022'; # VERSION
+our $VERSION = '0.023'; # VERSION
 
 use Metabase::Fact::String;
 our @ISA = qw/Metabase::Fact::String/;
 
 sub new {
-  my $class = shift;
-  my $self = $class->SUPER::new(@_);
-  $self->set_creator($self->resource) unless $self->creator;
-  return $self;
+    my $class = shift;
+    my $self  = $class->SUPER::new(@_);
+    $self->set_creator( $self->resource ) unless $self->creator;
+    return $self;
 }
 
 1;
@@ -30,7 +31,7 @@ Metabase::User::Secret - Metabase fact for user shared authentication secret
 
 =head1 VERSION
 
-version 0.022
+version 0.023
 
 =head1 SYNOPSIS
 

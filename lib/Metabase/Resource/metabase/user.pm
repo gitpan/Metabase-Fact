@@ -1,9 +1,9 @@
 use 5.006;
 use strict;
 use warnings;
-package Metabase::Resource::metabase::user;
-our $VERSION = '0.022'; # VERSION
 
+package Metabase::Resource::metabase::user;
+our $VERSION = '0.023'; # VERSION
 
 use Metabase::Resource::metabase::fact;
 our @ISA = qw/Metabase::Resource::metabase::fact/;
@@ -24,7 +24,7 @@ Metabase::Resource::metabase::user - class for Metabase user profiles
 
 =head1 VERSION
 
-version 0.022
+version 0.023
 
 =head1 SYNOPSIS
 

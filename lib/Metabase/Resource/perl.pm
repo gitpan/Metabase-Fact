@@ -1,8 +1,9 @@
 use 5.006;
 use strict;
 use warnings;
+
 package Metabase::Resource::perl;
-our $VERSION = '0.022'; # VERSION
+our $VERSION = '0.023'; # VERSION
 
 use Carp ();
 
@@ -10,17 +11,17 @@ use Metabase::Resource;
 our @ISA = qw/Metabase::Resource/;
 
 sub _extract_type {
-  my ($self, $resource) = @_;
+    my ( $self, $resource ) = @_;
 
-  # determine type
-  # Possible types could be:
-  #  - commit
-  #  - tag -- not implemented
-  #  - tarball -- not implemented
-  my ($type) = $resource =~ m{\Aperl:///([^/]+)/};
-  Carp::confess("could not determine Metabase::Resource type from '$resource'\n")
-    unless defined $type && length $type;
-  return __PACKAGE__ . "::$type";
+    # determine type
+    # Possible types could be:
+    #  - commit
+    #  - tag -- not implemented
+    #  - tarball -- not implemented
+    my ($type) = $resource =~ m{\Aperl:///([^/]+)/};
+    Carp::confess("could not determine Metabase::Resource type from '$resource'\n")
+      unless defined $type && length $type;
+    return __PACKAGE__ . "::$type";
 }
 
 1;
@@ -39,7 +40,7 @@ Metabase::Resource::perl - class for Metabase resources under the perl scheme
 
 =head1 VERSION
 
-version 0.022
+version 0.023
 
 =head1 SYNOPSIS
 

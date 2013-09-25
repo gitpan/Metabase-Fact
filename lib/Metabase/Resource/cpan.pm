@@ -1,8 +1,9 @@
 use 5.006;
 use strict;
 use warnings;
+
 package Metabase::Resource::cpan;
-our $VERSION = '0.022'; # VERSION
+our $VERSION = '0.023'; # VERSION
 
 use Carp ();
 
@@ -10,11 +11,11 @@ use Metabase::Resource;
 our @ISA = qw/Metabase::Resource/;
 
 sub _extract_type {
-  my ($self, $resource) = @_;
-  my ($type) = $resource =~ m{\Acpan:///([^/]+)/};
-  Carp::confess("could not determine Metabase::Resource type from '$resource'\n")
-    unless defined $type && length $type;
-  return __PACKAGE__ . "::$type";
+    my ( $self, $resource ) = @_;
+    my ($type) = $resource =~ m{\Acpan:///([^/]+)/};
+    Carp::confess("could not determine Metabase::Resource type from '$resource'\n")
+      unless defined $type && length $type;
+    return __PACKAGE__ . "::$type";
 }
 
 1;
@@ -33,7 +34,7 @@ Metabase::Resource::cpan - class for Metabase resources
 
 =head1 VERSION
 
-version 0.022
+version 0.023
 
 =head1 SYNOPSIS
 

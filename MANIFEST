@@ -26,6 +26,7 @@ lib/Metabase/User/EmailAddress.pm
 lib/Metabase/User/FullName.pm
 lib/Metabase/User/Profile.pm
 lib/Metabase/User/Secret.pm
+perlcritic.rc
 t/00-compile.t
 t/00-report-prereqs.t
 t/base.t
@@ -41,6 +42,7 @@ t/resource/base.t
 t/resource/cpan.t
 t/resource/perl.t
 t/user/profile.t
+tidyall.ini
 xt/author/critic.t
 xt/author/pod-spell.t
 xt/release/distmeta.t

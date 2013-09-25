@@ -6,7 +6,7 @@
       "H.Merijn Brand <hmbrand@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300038, CPAN::Meta::Converter version 2.132510",
+   "generated_by" : "Dist::Zilla version 4.300039, CPAN::Meta::Converter version 2.132620",
    "license" : [
       "apache_2_0"
    ],
@@ -29,7 +29,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.30"
+            "ExtUtils::MakeMaker" : "6.17"
          }
       },
       "develop" : {
@@ -74,67 +74,67 @@
    "provides" : {
       "Metabase::Fact" : {
          "file" : "lib/Metabase/Fact.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::Fact::Hash" : {
          "file" : "lib/Metabase/Fact/Hash.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::Fact::String" : {
          "file" : "lib/Metabase/Fact/String.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::Report" : {
          "file" : "lib/Metabase/Report.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::Resource" : {
          "file" : "lib/Metabase/Resource.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::Resource::cpan" : {
          "file" : "lib/Metabase/Resource/cpan.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::Resource::cpan::distfile" : {
          "file" : "lib/Metabase/Resource/cpan/distfile.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::Resource::metabase" : {
          "file" : "lib/Metabase/Resource/metabase.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::Resource::metabase::fact" : {
          "file" : "lib/Metabase/Resource/metabase/fact.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::Resource::metabase::user" : {
          "file" : "lib/Metabase/Resource/metabase/user.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::Resource::perl" : {
          "file" : "lib/Metabase/Resource/perl.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::Resource::perl::commit" : {
          "file" : "lib/Metabase/Resource/perl/commit.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::User::EmailAddress" : {
          "file" : "lib/Metabase/User/EmailAddress.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::User::FullName" : {
          "file" : "lib/Metabase/User/FullName.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::User::Profile" : {
          "file" : "lib/Metabase/User/Profile.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       },
       "Metabase::User::Secret" : {
          "file" : "lib/Metabase/User/Secret.pm",
-         "version" : "0.022"
+         "version" : "0.023"
       }
    },
    "release_status" : "stable",
@@ -149,7 +149,7 @@
          "web" : "https://github.com/dagolden/Metabase-Fact"
       }
    },
-   "version" : "0.022",
+   "version" : "0.023",
    "x_authority" : "cpan:DAGOLDEN",
    "x_contributors" : [
       "Nathan Gary Glenn <nglenn@cpan.org>",
