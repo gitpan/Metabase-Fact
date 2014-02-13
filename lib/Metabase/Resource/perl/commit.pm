@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 package Metabase::Resource::perl::commit;
-our $VERSION = '0.023'; # VERSION
+our $VERSION = '0.024'; # VERSION
 
 use Carp ();
 
@@ -30,6 +30,15 @@ sub _init {
     return $self;
 }
 
+# =method full_url
+#
+#   my $url = $self->full_url($host);
+#
+# Returns an ordinary HTTP URL to the resource.  If C<$host> is not
+# given, it defaults to the official master Perl repository at
+# L<http://perl5.git.perl.org>.
+#
+# =cut
 
 sub full_url {
     my ( $self, $host ) = @_;
@@ -40,6 +49,43 @@ sub full_url {
 # 'commit' validates during _init, really
 sub validate { 1 }
 
+# =pod
+#
+# =head1 SYNOPSIS
+#
+#   my $resource = Metabase::Resource->new(
+#     'perl:///commit/8c576062',
+#   );
+#
+#   my $resource_meta = $resource->metadata;
+#   my $typemap       = $resource->metadata_types;
+#   my $url = $self->full_url;
+#
+# =head1 DESCRIPTION
+#
+# Generates resource metadata for resources of the scheme 'perl:///commit'.
+#
+#   my $resource = Metabase::Resource->new(
+#     'perl:///commit/8c576062',
+#   );
+#
+# For the example above, the resource metadata structure would contain the
+# following elements:
+#
+#   scheme       => perl
+#   type         => commit
+#   sha1         => 8c576062
+#
+# =head1 BUGS
+#
+# Please report any bugs or feature using the CPAN Request Tracker.
+# Bugs can be submitted through the web interface at
+# L<http://rt.cpan.org/Dist/Display.html?Queue=Metabase-Fact>
+#
+# When submitting a bug or request, please include a test-file or a patch to an
+# existing test-file that illustrates the bug or desired feature.
+#
+# =cut
 
 1;
 
@@ -49,7 +95,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 
@@ -57,7 +103,7 @@ Metabase::Resource::perl::commit - class for Metabase resources about perl commi
 
 =head1 VERSION
 
-version 0.023
+version 0.024
 
 =head1 SYNOPSIS
 
@@ -123,7 +169,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2013 by David Golden.
+This software is Copyright (c) 2014 by David Golden.
 
 This is free software, licensed under:
 

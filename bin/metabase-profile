@@ -6,7 +6,7 @@ use warnings;
 package metabase_profile; # dzil needs this
 # PODNAME: metabase-profile
 # ABSTRACT: create a metabase profile
-our $VERSION = '0.023'; # VERSION
+our $VERSION = '0.024'; # VERSION
 
 use Getopt::Long;
 use JSON 2;
@@ -72,7 +72,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 
@@ -80,7 +80,7 @@ metabase-profile - create a metabase profile
 
 =head1 VERSION
 
-version 0.023
+version 0.024
 
 =head1 SYNOPSIS
 
@@ -104,7 +104,7 @@ Valid options include:
   -h, --help              print man page
 
 If no output file name is given, the default name 'metabase_id.json' will be
-used.  If the the output filename (or default) exists, the program will abort
+used.  If the output filename (or default) exists, the program will abort
 rather than overwrite the file.  The output file will be in JSON and contain
 the user profile and the user's shared secret.
 
@@ -138,7 +138,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2013 by David Golden.
+This software is Copyright (c) 2014 by David Golden.
 
 This is free software, licensed under:
 

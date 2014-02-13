@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 package Metabase::Fact;
-our $VERSION = '0.023'; # VERSION
+our $VERSION = '0.024'; # VERSION
 
 use Carp ();
 use Data::GUID guid_string => { -as => '_guid' };
@@ -277,7 +277,7 @@ sub from_struct {
     my $metadata  = $struct->{metadata};
     my $core_meta = $metadata->{core};
 
-    # transfrom struct into content and core metadata arguments the way they
+    # transform struct into content and core metadata arguments the way they
     # would be given to new, then validate these and get an object from
     # _init_guts
     my @args = (
@@ -409,7 +409,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 
@@ -417,7 +417,7 @@ Metabase::Fact - base class for Metabase Facts
 
 =head1 VERSION
 
-version 0.023
+version 0.024
 
 =head1 SYNOPSIS
 
@@ -892,6 +892,14 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =item *
 
+David Steinbrunner <dsteinbrunner@pobox.com>
+
+=item *
+
+Karen Etheridge <ether@cpan.org>
+
+=item *
+
 Nathan Gary Glenn <nglenn@cpan.org>
 
 =item *
@@ -902,7 +910,7 @@ Randy Stauner <rwstauner@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2013 by David Golden.
+This software is Copyright (c) 2014 by David Golden.
 
 This is free software, licensed under:
 

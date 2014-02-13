@@ -1,5 +1,12 @@
 Revision history for Metabase-Fact
 
+0.024     2014-02-13 14:30:03-05:00 America/New_York
+
+    [CHANGED]
+
+    - Dropped use of Test::Exceptions in favor of Test::Fatal (Karen
+      Etheridge)
+
 0.023     2013-09-25 13:53:13 America/New_York
 
     [FIXED]

@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 package Metabase::Resource;
-our $VERSION = '0.023'; # VERSION
+our $VERSION = '0.024'; # VERSION
 
 use Carp ();
 
@@ -127,7 +127,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 
@@ -135,7 +135,7 @@ Metabase::Resource - factory class for Metabase resource descriptors
 
 =head1 VERSION
 
-version 0.023
+version 0.024
 
 =head1 SYNOPSIS
 
@@ -213,7 +213,7 @@ of the URI into relevant index metadata.
 
 Subclasses SHOULD NOT implement a C<new> constructor, as the Metabase::Resource
 constructor will load the subclass, construct the object, bless the object
-into the subclass, and and then call C<validate> on the object.  Subclasses
+into the subclass, and then call C<validate> on the object.  Subclasses
 MAY store structured data derived from the content string during validation.
 
 Subclasses SHOULD use the C<content> method to access the resource string and
@@ -324,7 +324,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2013 by David Golden.
+This software is Copyright (c) 2014 by David Golden.
 
 This is free software, licensed under:
 

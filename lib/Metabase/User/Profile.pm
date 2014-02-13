@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 package Metabase::User::Profile;
-our $VERSION = '0.023'; # VERSION
+our $VERSION = '0.024'; # VERSION
 
 use Carp ();
 use Data::GUID guid_string => { -as => '_guid' };
@@ -71,7 +71,7 @@ __END__
 
 =pod
 
-=encoding utf-8
+=encoding UTF-8
 
 =head1 NAME
 
@@ -79,7 +79,7 @@ Metabase::User::Profile - Metabase report class for user-related facts
 
 =head1 VERSION
 
-version 0.023
+version 0.024
 
 =head1 SYNOPSIS
 
@@ -170,7 +170,7 @@ H.Merijn Brand <hmbrand@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2013 by David Golden.
+This software is Copyright (c) 2014 by David Golden.
 
 This is free software, licensed under:
 
